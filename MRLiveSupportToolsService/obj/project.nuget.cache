@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "4nCpizr5DKslT9px+j4t2nutnD+IrQWP58pfXk4lEFYmEx79E1hFUYbrd6qRNgaJBO4BM/3ilMPIZWgmVvKK0A==",
+  "success": true,
+  "projectFilePath": "D:\\Users\\Woody\\Documents\\Projects\\MRLiveSupportTools\\MRLiveSupportToolsService\\MRLiveSupportToolsService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Woody\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Woody\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Woody\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Woody\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Woody\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Woody\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
