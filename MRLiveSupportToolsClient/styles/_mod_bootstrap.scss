@@ -1,0 +1,42 @@
+@import "skin";
+
+ul.nav-tabs{
+    width:fit-content;
+    @include node_skin;
+    li.nav-item{
+        display: inline-block;
+        width:fit-content;
+        padding:0.5rem;
+        border-right:solid 1px $separater_color
+    }
+    li.nav-item:not(.active)>.nav-link{
+        color:#fff3;
+        transition: 0.1s;
+    }
+}
+
+.tab-container{
+    width:100%;
+    height:100%;
+}
+.tab-content{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    width:100%;
+    @include node_skin;
+}
+
+.game-list{
+    height:100%;
+}
+.tab-pane{
+    padding:1rem;
+    width:100%;
+    height:100%;
+}
+.tab-pane:not(.active){
+    display: none;
+}

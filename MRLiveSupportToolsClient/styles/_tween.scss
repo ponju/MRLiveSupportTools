@@ -1,0 +1,5 @@
+@import "./variables/animations";
+
+*{
+    transition:$default_transition;
+}

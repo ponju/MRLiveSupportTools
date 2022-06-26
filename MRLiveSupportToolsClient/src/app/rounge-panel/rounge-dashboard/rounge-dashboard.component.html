@@ -1,0 +1,75 @@
+<div class="rounge-dashboard">
+  <div class="view-section">
+    <div class="matchup-side --1p">
+      <div class="side">1P</div>
+      <div class="side-description">CHAMPION<div class="win-count"><i class="fa-solid fa-crown icon"></i>3</div>
+      </div>
+      <div class="player-profile">
+        <div class="header">Breeder</div>
+        <div class="player-name">ぽんじゅ</div>
+      </div>
+      <div class="playable-info">
+        <div class="header">Monster</div>
+        <div class="playable-name">ドンキフリーマス</div>
+        <div class="score">0</div>
+      </div>
+    </div>
+    <div class="matchup-side --2p">
+      <div class="side">2P</div>
+      <div class="side-description">CHALLEGER</div>
+      <div class="player-profile">
+        <div class="header">Breeder</div>
+        <div class="player-name">ぽんじゅ</div>
+      </div>
+      <div class="playable-info">
+        <div class="header">Monster</div>
+        <div class="playable-name">ドンキフリーマス</div>
+        <div class="score">0</div>
+      </div>
+    </div>
+
+    <div class="message-box">
+      <div class="grand-champion-header">
+        Grand Champion:
+      </div>
+      <div class="champion-monster">くろげわぎゅう</div>
+      <div class="side-description">(0 wins)</div>
+
+      <div class="entry">順番待ち:3</div>
+      <div class="join">参加モンスター:3</div>
+      <div class="message">
+        {{context?.note}}
+      </div>
+    </div>
+
+    <div class="comment-box">
+    </div>
+
+    <div class="mode-header" *ngIf="context==undefined">
+      <i class="icon fa-solid fa-arrows-spin"></i>
+      <h2 class="name">Rounge</h2>
+    </div>
+    <div class="live-brandings" *ngIf="context!=undefined">
+      <div class="rounge-title">{{context.name}}</div>
+      <div class="presenter" *ngIf="context?.presenter">
+        presented by {{context.presenter}}
+      </div>
+      <div class="supporter">
+        {{context.supporter}}
+      </div>
+    </div>
+  </div>
+  <div class="ctrl-section">
+    <tabset #ctrlTabs>
+      <tab heading="HOST">
+        <rounge-host-utilities [context]="context"></rounge-host-utilities>
+      </tab>
+      <tab heading="SETTINGS">
+        FUGA
+      </tab>
+      <tab heading="PROFILE">
+        <rounge-profile-editor [context]="context"></rounge-profile-editor>
+      </tab>
+
+    </tabset>
+</div>

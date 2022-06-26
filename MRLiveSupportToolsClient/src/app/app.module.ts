@@ -1,18 +1,27 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { ButtonRadioDirective } from 'ngx-bootstrap/buttons';
+import { DashboardPanelModule } from './dashboard-panel/dashboard-panel.module';
+import { NgModule } from '@angular/core';
+import { RoungePanelModule } from './rounge-panel/rounge-panel.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
+  
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
+    DashboardPanelModule,
+    RoungePanelModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

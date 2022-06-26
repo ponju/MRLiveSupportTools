@@ -1,0 +1,14 @@
+@import "/styles/variables/colors";
+@import "/styles/variables/size";
+
+
+body{
+    background-color: #333;
+    color:$default_font_color;
+}
+@mixin node_skin{
+    color:$default_font_color;
+    border:solid $separater_color $separater_width;
+    background-color: $node_bg_color_dark;
+    box-shadow:4px 4px 4px 4px $shadow_color;
+}

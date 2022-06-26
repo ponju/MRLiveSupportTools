@@ -1,0 +1,186 @@
+@import "/styles/skin";
+@import "/styles/layout";
+@import "~ngx-bootstrap/tabs/tabs.css";
+
+.rounge-dashboard {
+  position: relative;
+}
+
+.rounge-list {
+  font-size: 1rem;
+  padding-left: 4rem;
+
+  .recent-list {
+    list-style: disc;
+  }
+}
+
+.rounge-dashboard {
+  width: 100%;
+  height: 100%;
+}
+
+.view-section>.mode-header {
+  & {
+    @include node_skin;
+    @include standard-flexbox;
+    width: fit-content;
+  }
+
+  &>* {
+    display: block;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+
+  &>.icon {
+    margin: 1rem;
+    font-size: 3.2rem;
+  }
+}
+
+.view-section>.message-box {
+  & {
+    padding: 0.5rem;
+    @include node_skin;
+    width: $side_panel_width;
+    height: 372px;
+    bottom: 0;
+    left: 0.5rem;
+    position: absolute;
+    text-align: center;
+  }
+
+  &>.entry {
+    margin-top: 1rem;
+  }
+
+  &>.join {}
+
+  &>.message {
+    margin-top: 1rem;
+    display: block;
+  }
+
+  &>.grand-champion-header {
+    color: $victory_color;
+  }
+
+}
+
+.view-section>.comment-box {
+  @include node_skin;
+  width: $side_panel_width;
+  height: 372px;
+  bottom: 0;
+  right: 0.5rem;
+  position: absolute;
+  text-align: center;
+}
+
+.view-section>.matchup-side {
+  & {
+    position: absolute;
+    top: 0.5rem;
+    padding: 1.5rem 0 0rem;
+    width: $side_panel_width;
+    text-align: center;
+    @include node_skin;
+  }
+
+  .info-header {
+    font-size: 1.2rem;
+  }
+
+  &>.side {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &>.side-description {
+    width: 100%;
+    margin: 1rem 0 2rem;
+    text-align: center;
+    color: $victory_color;
+    font-size: 1.2rem;
+
+    .icon {
+      margin: 0.5rem;
+    }
+
+    &>.win-count {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.--1p {
+    left: 0.5rem;
+  }
+
+  &.--1p>.side {
+    color: $player_color_west;
+  }
+
+  &.--2p {
+    right: 0.5rem;
+  }
+
+  &.--2p>.side {
+    color: $player_color_east;
+  }
+}
+
+.view-section>.matchup-side>.player-profile {
+  &>.player-name {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  &>.playable-name {
+    font-size: 1.5rem;
+  }
+}
+
+.view-section>.matchup-side>.playable-info {
+  & {
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  &>.playable-name {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  &>.score {
+    font-size: 4rem;
+  }
+}
+
+.view-section>.live-brandings {
+  & {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 1200px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    @include node_skin;
+  }
+
+  &>.supporter {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  &>.presenter {
+    width: 100%;
+    font-size: 1rem;
+  }
+}

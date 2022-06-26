@@ -1,0 +1,36 @@
+<div class="rounge-profile-editor">
+  <div class="rounge-settings" >
+    <form class="edit-form" #basic_info="ngForm" *ngIf="!(context==undefined||context==null); as context">
+      <div class="row">
+        <label class="label">Rounge Name</label>
+        <input name="name" #name="ngModel" [(ngModel)]="context.name" placeholder="name">
+      </div>
+      <div class="row">
+        <label class="label">Host Name</label>
+        <input name="presenter" [(ngModel)]="context.presenter">
+      </div>
+      <div class="row">
+        <label class="label">Supporter</label>
+        <input name="supporter" class="support" [(ngModel)]="context.supporter">
+      </div>
+      <div class="row">
+        <label class="label">Note</label>
+        <textarea name="comment" [(ngModel)]="context.note"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="rounge-settings">
+    <form class="edit-form" #function_form="ngForm">
+      <div class="row">
+        <label class="label">Spreadsheet API</label>
+        <input >
+      </div>
+    </form>
+  </div>
+  <div class="fn-btns">
+    <button class="btn apply"><i class="fa-solid fa-rotate icon"></i>Apply</button>
+    <button class="btn new"><i class="fa-solid fa-plus icon"></i>Reset</button>
+    <button class="btn import"><i class="fa-solid fa-download icon"></i>Load</button>
+    <button class="btn export"><i class="fa-solid fa-upload icon"></i>Export</button>
+  </div>
+</div>

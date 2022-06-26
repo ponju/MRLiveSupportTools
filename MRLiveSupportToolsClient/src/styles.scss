@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "/styles/reset";
+@import "/styles/shared";
+@import "/styles/layout";
+@import "/styles/skin";
+@import "/styles/tween";
+@import "/styles/mod_bootstrap";
+
+
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "~/node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "~/node_modules/bootstrap/scss/variables";
+@import "~/node_modules/bootstrap/scss/mixins";
+
+@import "~/node_modules/bootstrap/scss/buttons";

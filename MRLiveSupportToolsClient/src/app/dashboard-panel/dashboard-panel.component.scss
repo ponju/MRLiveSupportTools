@@ -1,0 +1,83 @@
+@import "/styles/layout";
+@import "/styles/skin";
+
+.rounge-panel {
+  width: 100%;
+  height: 100%;
+}
+
+.view-section {
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: red;
+  }
+  &>.rounge-profile,
+  &>.rounge-record{
+    @include node_skin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+}
+.view-section>.rounge-profile{
+  & {
+    @include node_skin;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 1rem auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &>* {
+    display: block;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+
+  &>.icon {
+    font-size: rem;
+    margin: 2rem;
+  }
+
+  &>.name,
+  .subname {
+    font-size: 3rem;
+    margin: 1rem auto;
+  }
+
+  &>.producted-by {
+    & {
+      position: absolute;
+      top: 105%;
+      width: 100%;
+      font-size: 1.2rem;
+      display: flex;
+      text-align: right;
+      justify-content: center;
+    }
+
+    &>.presenter {
+      margin-right: 1rem;
+    }
+
+    &>.productor {}
+  }
+
+  &>.producted-by> {}
+}
+.ctrl-section {
+  border-top: solid 4px $separater_color;
+  display: flex;
+  align-items: center;
+}
