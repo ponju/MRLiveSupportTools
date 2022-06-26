@@ -1,5 +1,12 @@
 <div class="rounge-host-utilities">
   <div class="conference-master">
+    <div btnRadioGroup [(ngModel)]="radioModel">
+      <label class="btn --p1"
+             btnRadio="p1" tabindex="0" role="button" [uncheckable]="true">Player1</label>
+      <label class="btn --p2"
+             btnRadio="Middle" tabindex="0" role="button" [uncheckable]="true">Player2</label>
+    </div>    
+  
     <div class="game-column">
       <h3 class="header"><span class="prev">&lt;&lt;</span>GAME 1<span class="prev">&gt;&gt;</span></h3>
       {{radioModel || 'null'}}

@@ -10,7 +10,7 @@ import RoungeContext from 'src/data/model/rounge-context';
 })
 export class RoungeHostUtilitiesComponent implements OnInit {
   @Input()
-  context?:RoungeContext;
+  context!:RoungeContext;
   radioModel?:unknown
   constructor() { }
 

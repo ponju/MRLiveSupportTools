@@ -2,18 +2,19 @@
 @import "/styles/skin";
 
 .rounge-profile-editor{
+    width:100%;
+    height:100%;
     display: flex;
-    
+    align-items: center;
 }
 .rounge-settings{
     text-align: left;
     display: flex;
     font-size:1rem;
-    margin-right:0.5rem;
     flex-grow: 1;
     width:40%;
+    height:100%;
     align-items: flex-start;
-    justify-content: center;
 }
 .rounge-settings>.edit-form{
     flex-grow:1;
@@ -65,10 +66,25 @@
     &>.btn{
         @include node_skin;
         font-size:1rem;
-        width:8rem;
         text-align: left;
+        width:100%;
     }
     &>.btn>.icon{
-        margin:0.5rem 1rem;
+        margin:0.24rem 1rem;
+    }
+}
+
+.form-item{
+    &{
+        width:100%;
+        font-size:1rem;
+    }
+    *{
+        width:50%;
+        font-size:1rem;
+        display:block;
+    }
+    .comment{
+        height:5rem;
     }
 }

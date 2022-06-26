@@ -1,14 +1,11 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
-  declarations: [
-
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,8 +15,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
   ],
   exports: [
     CommonModule,
-    FormsModule,
-    TabsModule
+    FormsModule, ReactiveFormsModule,
+    ButtonsModule, TabsModule
   ]
 })
 export class SharedModule { }

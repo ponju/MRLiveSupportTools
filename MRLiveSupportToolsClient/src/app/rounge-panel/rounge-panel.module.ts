@@ -1,6 +1,3 @@
-import { ButtonRadioDirective, ButtonRadioGroupDirective } from 'ngx-bootstrap/buttons';
-
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RoungeDashboardComponent } from './rounge-dashboard/rounge-dashboard.component';
 import { RoungeHostUtilitiesComponent } from './rounge-host-utilities/rounge-host-utilities.component';
@@ -17,7 +14,7 @@ import { SharedModule } from './../shared/shared.module';
     SharedModule,
     RoungePanelRoutingModule,
   ],
-  exports:[
+  exports: [
     RoungeProfileEditorComponent,
     RoungeHostUtilitiesComponent
   ]

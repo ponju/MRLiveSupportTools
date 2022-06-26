@@ -1,12 +1,3 @@
 <div class="app-layout" [@routeAnimations]="getPanelName(outlet)">
-  
-  <div class="btn-group" radioBtn>
-    <label class="btn btn-primary" [(ngModel)]="radioModel"
-           btnRadio="Left" tabindex="0" role="button">Left</label>
-    <label class="btn btn-primary" [(ngModel)]="radioModel"
-           btnRadio="Middle" tabindex="0" role="button">Middle</label>
-    <label class="btn btn-primary" [(ngModel)]="radioModel"
-           btnRadio="Right" tabindex="0" role="button">Right</label>
-  </div>    
   <router-outlet #outlet="outlet"></router-outlet>
 </div>

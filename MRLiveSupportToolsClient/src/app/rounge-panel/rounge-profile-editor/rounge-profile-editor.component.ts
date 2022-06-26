@@ -9,7 +9,7 @@ import RoungeContext from 'src/data/model/rounge-context';
 })
 export class RoungeProfileEditorComponent implements OnInit {
   @Input()
-  context?:RoungeContext;
+  context!:RoungeContext;
 
 
   constructor() { }

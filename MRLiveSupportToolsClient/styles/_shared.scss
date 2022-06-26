@@ -13,9 +13,15 @@ body {
   height: 1080px;
 }
 
+.section-separators{
+  content:"";
+  border:none;
+  width:100%;
+  margin:30px 0;
+}
+
 .ctrl-section {
   @include standard-flexbox;
   width: 100%;
-  height: 360px;
-  border-top: solid 4px $separater_color;
+  height: 440px;
 }
