@@ -1,43 +1,47 @@
 <div class="rounge-dashboard">
   <ng-container *ngIf="(context$ |async ) as context">
     <div class="view-area">
-      <div class="side-dock matchup-side --1p">
-        <div class="side">1P</div>
-        <div class="side-description">CHAMPION<div class="win-count"><i class="fa-solid fa-crown icon"></i>3</div>
+      <div class="matchup-info-container">
+        <div class="side-dock matchup-side --1p">
+          <div class="side">1P</div>
+          <div class="side-description">CHAMPION<div class="win-count"><i class="fa-solid fa-crown icon"></i>3</div>
+          </div>
+          <div class="player-profile">
+            <div class="header">Breeder</div>
+            <div class="player-name">ぽんじゅ</div>
+          </div>
+          <div class="playable-info">
+            <div class="header">Monster</div>
+            <div class="playable-name">ドンキフリーマス</div>
+            <div class="score">★</div>
+          </div>
         </div>
-        <div class="player-profile">
-          <div class="header">Breeder</div>
-          <div class="player-name">ぽんじゅ</div>
+        <div class="main-dock">
+          <rounge-entry-list></rounge-entry-list>
         </div>
-        <div class="playable-info">
-          <div class="header">Monster</div>
-          <div class="playable-name">ドンキフリーマス</div>
-          <div class="score">0</div>
+        <div class="side-dock matchup-side --2p">
+          <div class="side">2P</div>
+          <div class="side-description">CHALLEGER</div>
+          <div class="player-profile">
+            <div class="header">Breeder</div>
+            <div class="player-name">ぽんじゅ</div>
+          </div>
+          <div class="playable-info">
+            <div class="header">Monster</div>
+            <div class="playable-name">ドンキフリーマス</div>
+            <div class="score">★</div>
+          </div>
         </div>
       </div>
-      <div class="main-dock">
-        <rounge-entry-list></rounge-entry-list>
-      </div>
-      <div class="side-dock matchup-side --2p">
-        <div class="side">2P</div>
-        <div class="side-description">CHALLEGER</div>
-        <div class="player-profile">
-          <div class="header">Breeder</div>
-          <div class="player-name">ぽんじゅ</div>
-        </div>
-        <div class="playable-info">
-          <div class="header">Monster</div>
-          <div class="playable-name">ドンキフリーマス</div>
-          <div class="score">0</div>
-        </div>
-      </div>
-      <div class="live-brandings">
-        <div class="rounge-title">{{context.name}}</div>
-        <div class="presenter" *ngIf="context.presenter">
-          presented by {{context.presenter}}
-        </div>
-        <div class="supporter">
-          {{context.supporter}}
+      <div class="live-brandings-container">
+        <div class="live-brandings">
+          <div class="rounge-title">{{context.name}}</div>
+          <div class="presenter" *ngIf="context.presenter">
+            presented by {{context.presenter}}
+          </div>
+          <div class="supporter">
+            {{context.supporter}}
+          </div>
         </div>
       </div>
     </div>

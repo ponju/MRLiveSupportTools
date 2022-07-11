@@ -76,8 +76,9 @@
 
   &>.producted-by> {}
 }
-.ctrl-section {
+.ctrl-area {
   border-top: solid 4px $separater_color;
   display: flex;
   align-items: center;
+  height:$ctrl_dock_height;
 }

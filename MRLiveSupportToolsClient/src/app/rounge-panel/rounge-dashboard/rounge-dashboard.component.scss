@@ -20,13 +20,14 @@
   height: 100%;
 }
 
-.view-area>.main-dock{
-  width:$main_dock_width;
+.view-area>.matchup-info-container>.main-dock{
+  max-width:$main_dock_width;
 }
-.view-area>.matchup-side {
+.view-area>.matchup-info-container>.matchup-side {
   & {
     padding: 1.5rem 0 0rem;
     width: $side_dock_width;
+    height:fit-content;
     text-align: center;
     @include node_skin;
   }
@@ -76,7 +77,12 @@
   }
 }
 
-.view-area>.matchup-side>.player-profile {
+.view-area>.matchup-info-container{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.view-area>.matchup-info-container>.matchup-side>.player-profile {
   &>.player-name {
     width: 100%;
     font-size: 1.5rem;
@@ -87,7 +93,7 @@
   }
 }
 
-.view-area>.matchup-side>.playable-info {
+.view-area>.matchup-info-container>.matchup-side>.playable-info {
   & {
     margin-top: 0.5rem;
     padding: 1rem 0;
@@ -99,11 +105,21 @@
   }
 
   &>.score {
-    font-size: 4rem;
+    display: inline-flex;
+    text-align: center;
+    font-size:1.5rem;
+    color:$victory_color;
+    height:1rem;
   }
 }
 
-.view-area>.live-brandings {
+.view-area>.live-brandings-container{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.view-area>.live-brandings-container>.live-brandings {
   & {
     text-align: center;
     height:6.4rem;

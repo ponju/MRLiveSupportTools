@@ -33,7 +33,6 @@ html{
     align-items: stretch;
     justify-content: space-between;
     padding:0.5rem;
-
 }
 .view-area>.main-dock{
     width:$main_dock_width;
@@ -41,9 +40,5 @@ html{
 }
 .ctrl-area{
     width:100%;
-    height:360px;
-}
-
-.ctrl-section{
-    width:100%;
+    height:$ctrl_dock_height;
 }
