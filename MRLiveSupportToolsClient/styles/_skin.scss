@@ -10,22 +10,10 @@ body{
     color:$default_font_color;
     border:solid $separater_color $separater_width;
     background-image: url("/assets/stone_00027.jpg");
+    background-clip: border-box;
+    background-repeat: round;
     box-shadow:4px 4px 4px 4px $shadow_color;
     &{
-        z-index:-1
-    }
-    &::after{
-        background-color: $node_bg_color_dark;
-        opacity: 0.72;
-        content:"";
-        position: absolute;
-        top:0;
-        right:0;
-        left:0;
-        bottom:0;
-        z-index: 0;
-    }
-    &>*{
-        z-index:1;
+        z-index: 1;
     }
 }
