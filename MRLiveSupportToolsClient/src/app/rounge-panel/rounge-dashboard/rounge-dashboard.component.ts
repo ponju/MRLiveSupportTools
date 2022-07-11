@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import RoungeContext from 'src/data/model/rounge-context';
+import RoungeContext from '../model/rounge-context';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Observable } from 'rxjs';
 

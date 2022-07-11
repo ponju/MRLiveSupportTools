@@ -13,7 +13,4 @@ body{
     background-clip: border-box;
     background-repeat: round;
     box-shadow:4px 4px 4px 4px $shadow_color;
-    &{
-        z-index: 1;
-    }
 }

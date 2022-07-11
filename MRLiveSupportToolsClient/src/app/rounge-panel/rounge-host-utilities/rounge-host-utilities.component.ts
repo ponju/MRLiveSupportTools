@@ -1,7 +1,7 @@
 import { ButtonRadioDirective, ButtonRadioGroupDirective } from 'ngx-bootstrap/buttons';
 import { Component, Input, OnInit } from '@angular/core';
 
-import RoungeContext from 'src/data/model/rounge-context';
+import RoungeContext from '../model/rounge-context';
 
 @Component({
   selector: 'rounge-host-utilities',

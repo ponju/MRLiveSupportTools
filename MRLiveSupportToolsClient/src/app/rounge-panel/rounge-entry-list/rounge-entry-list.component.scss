@@ -1,0 +1,104 @@
+@import "/styles/shared";
+
+$table_border: #121212ff;
+
+.rounge-entry-list {
+    display: flex;
+    max-width:100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    @include node_skin;
+}
+
+.rounge-info{
+    &{
+        width:100%;
+        display: flex;
+        font-size:1.5rem;
+        padding:0.5rem;
+        margin:1rem
+    }
+}
+
+.entry-list {
+    margin: 0 1rem 1rem;
+    padding: 1rem;
+}
+
+.entry-list>.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.entry-list>.members-list {
+    & {
+        border-collapse: collapse;
+        overflow: scroll;
+        height: 360px;
+        display: block;
+        padding: 0.5rem;
+        color: $invert_part_color;
+        background-color: #ffff;
+    }
+
+    &>.table-header {
+        & {
+            border-bottom: solid 4px;
+        }
+    }
+
+    &>.member-info {
+        & {
+            border-bottom: solid 4px $table_border;
+        }
+
+        &>* {
+            text-align: center;
+            padding: 0.24rem;
+        }
+    }
+
+    &>.member-info.--champion {
+        background-color: #e888;
+    }
+
+    &>.member-info.--challenger {
+        background-color: #88e8;
+    }
+}
+
+.rounge-summery{
+    &{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &>*{
+        margin-right:1rem;
+    }
+}
+.champion-info {
+    & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        margin: 0 1rem 1rem;
+        padding: 0.5rem;
+        text-align: center;
+        margin:0 0 1rem;
+        font-size:1.2rem;
+    }
+
+    &>.header{
+        font-size:1rem;
+        color: $victory_color;
+        margin-bottom:1rem;
+    }
+    &>* {
+        display: block;
+        width:100%;
+    }
+}

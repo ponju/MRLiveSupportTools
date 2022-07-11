@@ -4,11 +4,13 @@ import { RoungeHostUtilitiesComponent } from './rounge-host-utilities/rounge-hos
 import { RoungePanelRoutingModule } from './rounge-panel-routing.module';
 import { RoungeProfileEditorComponent } from './rounge-profile-editor/rounge-profile-editor.component';
 import { SharedModule } from './../shared/shared.module';
+import { RoungeEntryListComponent } from './rounge-entry-list/rounge-entry-list.component';
 @NgModule({
   declarations: [
     RoungeDashboardComponent,
     RoungeProfileEditorComponent,
     RoungeHostUtilitiesComponent,
+    RoungeEntryListComponent,
   ],
   imports: [
     SharedModule,
