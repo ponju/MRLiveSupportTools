@@ -34,8 +34,11 @@ html{
     justify-content: space-between;
     padding:0.5rem;
 }
-.view-area>.main-dock{
-    width:$main_dock_width;
+.view-area>.center-dock{
+    position: absolute;
+    left:$side_dock_width;
+    right:$side_dock_width;
+    width:$center_dock_width;
     @include standard-flexbox;
 }
 .ctrl-area{

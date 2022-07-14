@@ -2,7 +2,7 @@ import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 
 import { ANIMATION_TAG } from './anims/animations';
 import { Component } from '@angular/core';
-import { generateExcludeTransitions } from './anims/excude';
+import { generateExcudeTransitions } from './anims/panel-switch/excude';
 import { trigger } from '@angular/animations';
 
 const ROUTING_ANIMATION = "routeAnimations";
@@ -14,8 +14,8 @@ const ROUTING_ANIMATION = "routeAnimations";
   animations:
     [
       trigger("routeAnimations",
-        generateExcludeTransitions(
-          ["Dashboard", "Rounge"], 0.5, 0.5
+        generateExcudeTransitions(
+          ["Dashboard", "Rounge"], 1, 1
         )
       )
     ]

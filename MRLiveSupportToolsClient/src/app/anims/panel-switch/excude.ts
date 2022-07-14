@@ -1,6 +1,6 @@
-import { AnimationTransitionMetadata, animate, animateChild, group, query, state, style, transition, trigger } from "@angular/animations";
+import { AnimationTransitionMetadata, animate, animateChild, group, query, sequence, state, style, transition, trigger } from "@angular/animations";
 
-export function generateExcludeTransitions(tags:string[],entry:number,leave:number){
+export function generateExcudeTransitions(tags:string[],entry:number,leave:number){
     let rtn:AnimationTransitionMetadata[]=[]
     for (let i = 0; i < tags.length; i++) {
         const stateA = tags[i];
@@ -24,48 +24,50 @@ function generateExcludeTransition(stateA:string,stateB:string,entry:number,leav
             })
         ]),
         query(':leave',animateChild()),
-        group([
+        sequence([
             query(':leave',[
-                animate(`${entry}ms ease-out`,style(
+                animate(`${leave}s ease-out`,style(
                     {
                         opacity:0,
-                        "transform":"translateY:(-0.1rem)"
-                    }))
+                        "transform":"translateY(-0.1rem)"
+                    }
+                ))
             ]),
             query(':enter',[
-                animate(`${entry}ms ease-out`,style(
+                animate(`${entry}s ease-out`,style(
                     {
                         opacity:1,
-                        "transform":"translateY:(0)"
-                    }))
-            ]),
+                        "transform":"translateY(-0.1rem)"
+                    }
+                ))
+            ])
         ])
     ])
 }
 
-function generateWildcardTransition(entry:number,leave:number){
-    return transition(`*<=>*`,
+export function generateWildcardTransition(entry:number,leave:number){
+    return transition(`* <=> *`,
     [
         query(':enter',[
             style({
                 opacity:0,
                 "transform":"translateY(0.1rem)",
-            })
+            }),
         ]),
         query(':leave',animateChild()),
-        group([
+        sequence([
             query(':leave',[
-                animate(`${entry}ms ease-out`,style(
+                animate(`${entry}s ease-out`,style(
                     {
                         opacity:0,
-                        "transform":"translateY:(-0.1rem)"
+                        "transform":"translateY(-0.1rem)"
                     }))
             ]),
             query(':enter',[
-                animate(`${leave}ms ease-out`,style(
+                animate(`${leave}s ease-out`,style(
                     {
                         opacity:1,
-                        "transform":"translateY:(0)"
+                        "transform":"translateY(0)"
                     }))
             ]),
             query('@*',animateChild())

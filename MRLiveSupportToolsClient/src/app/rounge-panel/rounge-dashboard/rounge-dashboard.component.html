@@ -1,36 +1,21 @@
 <div class="rounge-dashboard">
   <ng-container *ngIf="(context$ |async ) as context">
     <div class="view-area">
+      <div class="hoge" (click)="set();">set</div>
+      <div class="hoge" (click)="clear()">set</div>
       <div class="matchup-info-container">
-        <div class="side-dock matchup-side --1p">
-          <div class="side">1P</div>
-          <div class="side-description">CHAMPION<div class="win-count"><i class="fa-solid fa-crown icon"></i>3</div>
-          </div>
-          <div class="player-profile">
-            <div class="header">Breeder</div>
-            <div class="player-name">ぽんじゅ</div>
-          </div>
-          <div class="playable-info">
-            <div class="header">Monster</div>
-            <div class="playable-name">ドンキフリーマス</div>
-            <div class="score">★</div>
+        <div class="side-dock --lhs">
+          <div @lhsDock *ngIf="currentMatchUp!.seatOne!=null">
+            <match-up-side [playerSide]="1" [seat]="currentMatchUp!.seatOne"  [wins]="currentMatchUp!.winsForSeatOne"></match-up-side>
           </div>
         </div>
-        <div class="main-dock">
+        <div class="side-dock --rhs">
+          <div @rhsDock *ngIf="currentMatchUp!.seatTwo!=null">
+            <match-up-side [playerSide]="2" [seat]="currentMatchUp!.seatTwo" [wins]="currentMatchUp!.winsForSeatTwo" ></match-up-side>
+          </div>
+        </div>
+        <div class="center-dock">
           <rounge-entry-list></rounge-entry-list>
-        </div>
-        <div class="side-dock matchup-side --2p">
-          <div class="side">2P</div>
-          <div class="side-description">CHALLEGER</div>
-          <div class="player-profile">
-            <div class="header">Breeder</div>
-            <div class="player-name">ぽんじゅ</div>
-          </div>
-          <div class="playable-info">
-            <div class="header">Monster</div>
-            <div class="playable-name">ドンキフリーマス</div>
-            <div class="score">★</div>
-          </div>
         </div>
       </div>
       <div class="live-brandings-container">
@@ -50,12 +35,12 @@
 
     <div class="ctrl-area">
       <tabset #ctrlTabs>
-        <tab heading="Entry">
-        </tab>
         <tab heading="Match">
-          <rounge-host-utilities [context]="context"></rounge-host-utilities>
+          <rounge-view-switcher></rounge-view-switcher>
         </tab>
-        <tab heading="PROFILE">
+        <tab heading="Tools">
+        </tab>
+        <tab heading="SETTINGS">
           <rounge-profile-editor [context]="context"></rounge-profile-editor>
         </tab>
       </tabset>

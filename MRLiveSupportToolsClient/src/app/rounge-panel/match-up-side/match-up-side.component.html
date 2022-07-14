@@ -1,0 +1,13 @@
+<div class="match-up-side">
+  <div class="side">{{playerSide}}P</div>
+  <div class="player-profile">
+    <div class="header">Breeder</div>
+    <div class="player-name">{{seat?.playerName}}</div>
+  </div>
+  <div class="playable-profile">
+    <div class="header">Monster</div>
+    <div class="playable-name">{{seat?.playableName}}</div>
+    {{wins}}
+    <div class="score"><span *ngFor="let i of winArray">★</span></div>
+  </div>
+</div>
