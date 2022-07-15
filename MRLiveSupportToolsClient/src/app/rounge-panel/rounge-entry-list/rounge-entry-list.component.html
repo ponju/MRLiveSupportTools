@@ -1,52 +1,26 @@
 <div class="rounge-entry-list">
-    <!-- <div class="champion-info">
-        <h2 class="header">
-            Ground champion
-        </h2>
-        <div class="player">ふぃん</div>
-        <div class="playable">ぶつりニンフィア</div>
-        <div class="wins">3連勝</div>
-    </div> -->
-
     <div class="entry-list">
         <h2 class="header">Entry list</h2>
         <span class="sync-btn"></span>
         <table class="members-list">
             <tr class="member-info table-header">
+                <th class="state"></th>
                 <th class="entry">Entry</th>
                 <th class="player">Player</th>
                 <th class="playable">Monster</th>
                 <th class="wins">Win</th>
             </tr>
-            <tr class="member-info --champion">
-                <td class="entry">ぽんじゅ</td>
-                <td class="player">ぽんじゅ</td>
-                <td class="playable">ドンキフリーマス</td>
-                <td class="wins">0</td>
-            </tr>
-            <tr class="member-info">
-                <td class="entry">ぽんじゅ</td>
-                <td class="player">ぽんじゅ</td>
-                <td class="playable">ドンキフリーマス</td>
-                <td class="wins">0</td>
-            </tr>
-            <tr class="member-info">
-                <td class="entry">ぽんじゅ</td>
-                <td class="player">ぽんじゅ</td>
-                <td class="playable">ドンキフリーマス</td>
-                <td class="wins">0</td>
-            </tr>
-            <tr class="member-info --challenger">
-                <td class="entry">でんちゆう</td>
-                <td class="player">ぽんじゅ</td>
-                <td class="playable">ドンキフリーマス</td>
-                <td class="wins">0</td>
+            <tr *ngFor="let entry of entries;index as i" class="member-info">
+                <td class="state">{{focusEntries.includes(entry)?'●':''}}</td>
+                <td class="entry">{{entry.entryName}}</td>
+                <td class="player">{{entry.playerName}}</td>
+                <td class="playable">{{entry.playableName}}</td>
+                <td class="wins"></td>
             </tr>
         </table>
         <div class="rounge-summery">
-            <span class="entry">エントリー数:3</span>
-            <span class="done">試合数:3</span>
-            <span class="order">順番待ち:3</span>
+            <span class="entry">エントリー数:{{entries.length}}</span>
+            <span class="order">{{entries.length-done.length}}人待ち</span>
         </div>
     </div>
 </div>
