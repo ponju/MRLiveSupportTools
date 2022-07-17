@@ -6,44 +6,42 @@ import { style } from '@angular/animations';
 import { transition } from '@angular/animations';
 
 export function horizontalSlide(entryPoint: string, entryDuration: number) {
+    let visibleStyle=style({transform:"translateX(0)"})
+    let invisibleStyle=style({transform:`translateX(${entryPoint})`})
     return [
-        transition(
-            ":enter", [
-            style({ transform: `translateX(${entryPoint})` }),
-            animate(entryDuration, style({ transform: "translateX(0)" })),
-            animateChild()
-        ]),
-        transition(
-            ":leave", [
-            animate(entryDuration, style({ transform: `translateX(${entryPoint})` }),
-            ),
-            animateChild()
-        ]),
+        state('true',visibleStyle),
+        state('false',invisibleStyle),
         transition(
             'false<=>true', animate(entryDuration)
+        ),
+        state('visible',visibleStyle),
+        state('hidden',invisibleStyle),
+        transition(
+            'visible<=>hidden', animate(entryDuration)
         )
     ]
 }
 
-export const SLIDE_FROM_LEFT=horizontalSlide("-100%",250);
-export const SLIDE_FROM_RIGHT=horizontalSlide("100%",250);
+export const SLIDE_FROM_LEFT=horizontalSlide("-150%",250);
+export const SLIDE_FROM_RIGHT=horizontalSlide("150%",250);
+
 
 export function verticalSlide(entryPoint: string, entryDuration: number) {
+    let visibleStyle=style({transform:"translateY(0)"})
+    let invisibleStyle=style({transform:`translateY(${entryPoint})`})
     return [
+        state('true',visibleStyle),
+        state('false',invisibleStyle),
         transition(
-            ":enter", [
-            style({ transform: `translateY(${entryPoint})` }),
-            animate(entryDuration, style({ transform: "translateY(0)" })),
-            animateChild()
-        ]),
+            'true<=>false', animate(entryDuration)
+        ),
+        state('visible',visibleStyle),
+        state('hidden',invisibleStyle),
         transition(
-            ":leave", [
-            animate(entryDuration, style({ transform: `translateY(${entryPoint})`}),
-            ),
-            animateChild()
-        ]),
-        transition(
-            'false<=>true', animate("1s")
+            'visible<=>hidden', animate(entryDuration)
         )
     ]
 }
+
+export const SLIDE_FROM_TOP=verticalSlide("-150%",250);
+export const SLIDE_FROM_BOTTOM=verticalSlide("150%",250);

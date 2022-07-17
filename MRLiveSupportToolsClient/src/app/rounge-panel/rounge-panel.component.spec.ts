@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoungeDashboardComponent } from './rounge-dashboard.component';
+import { RoungePanelComponent } from './rounge-panel.component';
 
 describe('RoungeDashboardComponent', () => {
-  let component: RoungeDashboardComponent;
-  let fixture: ComponentFixture<RoungeDashboardComponent>;
+  let component: RoungePanelComponent;
+  let fixture: ComponentFixture<RoungePanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoungeDashboardComponent ]
+      declarations: [ RoungePanelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoungeDashboardComponent);
+    fixture = TestBed.createComponent(RoungePanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

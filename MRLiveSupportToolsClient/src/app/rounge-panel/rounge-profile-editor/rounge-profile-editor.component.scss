@@ -7,16 +7,16 @@
     display: flex;
     align-items: center;
 }
-.rounge-settings{
+.rounge-options{
     text-align: left;
     display: flex;
     font-size:1rem;
     flex-grow: 1;
-    width:40%;
+    width:50%;
     height:100%;
     align-items: flex-start;
 }
-.rounge-settings>.edit-form{
+.rounge-options>.edit-form{
     flex-grow:1;
     font-size:1rem;
     padding:0.5rem;
@@ -27,7 +27,7 @@
     margin-right:0.5rem;
 }
 
-.rounge-settings>.edit-form>.row{
+.rounge-options>.edit-form>.row{
     &{
         padding:0.24rem 1rem;
         width:100%;
@@ -61,14 +61,15 @@
         justify-content: center;
         flex-wrap: wrap
     }
-    &>.apply{
-        margin-bottom:1rem;
-    }
     &>.btn{
         @include node_skin;
         font-size:1rem;
         text-align: left;
+        margin:0.5rem;
         width:100%;
+    }
+    &>.btn:hover{
+        transform:translateY(-0.1rem);
     }
     &>.btn>.icon{
         margin:0.24rem 1rem;
@@ -88,4 +89,7 @@
     .comment{
         height:5rem;
     }
+}
+.form-item>.count{
+    width:3rem;
 }

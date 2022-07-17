@@ -1,0 +1,46 @@
+<div class="rounge-dashboard">
+  <ng-container *ngIf="(profile) as prof">
+    <div class="view-area">
+      <div class="matchup-info-container" *ngIf="(currentMatchUp)as match">
+        <div class="side-dock --lhs">
+          <div [@lhsDock]="match.seatOne!=null && showLHS">
+            <match-up-side [playerSide]="1" [seat]="match!.seatOne"  [wins]="match!.winsForSeatOne"></match-up-side>
+          </div>
+        </div>
+        <div class="side-dock --rhs">
+          <div [@rhsDock]="match.seatTwo!=null && showRHS">
+            <match-up-side [playerSide]="2" [seat]="match.seatTwo" [wins]="match.winsForSeatTwo" ></match-up-side>
+          </div>
+        </div>
+        <div class="center-dock">
+          <div [@entryList]="showEntries">
+            <rounge-entry-list [focusEntries]="focusEntries"></rounge-entry-list>
+          </div>
+        </div>
+      </div>
+      <div class="live-brandings-container" (click)="showEntries=!showEntries">
+        <div class="live-brandings">
+          <div class="rounge-title">{{prof.name}}</div>
+          <div class="presenter" *ngIf="prof.presenter">
+            presented by {{prof.presenter}}
+          </div>
+          <div *ngIf="prof.supporter" class="supporter">
+            {{prof.supporter}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-separators">
+    </div>
+
+    <div class="ctrl-area">
+      <tabset #ctrlTabs>
+        <tab heading="MATCH UP">
+        </tab>
+        <tab heading="OPTIONS">
+          <rounge-profile-editor [profile]="profile"></rounge-profile-editor>
+        </tab>
+      </tabset>
+    </div>
+  </ng-container>
+</div>

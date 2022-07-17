@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import RoungeContext from '../model/rounge-context';
+import RoungeProfile from '../model/rounge-context';
 
 @Component({
   selector: 'rounge-profile-editor',
@@ -9,7 +9,7 @@ import RoungeContext from '../model/rounge-context';
 })
 export class RoungeProfileEditorComponent implements OnInit {
   @Input()
-  context!:RoungeContext;
+  profile!:RoungeProfile;
 
 
   constructor() { }

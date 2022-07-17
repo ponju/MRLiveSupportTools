@@ -1,4 +1,4 @@
-export default class RoungeContext{
-    constructor(public name:string,public presenter:string|undefined,public supporter:string,public note:string,public spreadsheetAPI:string) {
+export default class RoungeProfile{
+    constructor(public name:string,public presenter:string|undefined,public supporter:string|undefined,public note:string,public roundCount:number,public api:string) {
     }
 }

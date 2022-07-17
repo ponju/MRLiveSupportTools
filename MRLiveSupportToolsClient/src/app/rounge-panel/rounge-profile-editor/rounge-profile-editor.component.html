@@ -1,36 +1,37 @@
 <div class="rounge-profile-editor">
-  <div class="rounge-settings" >
-    <form class="edit-form" #basic_info="ngForm">
+  <div class="rounge-options">
+    <form class="edit-form" #profileEditor="ngForm">
       <div class="form-item">
         <label class="label">Rounge Name</label>
-        <input name="name" #name="ngModel" [(ngModel)]="context.name" placeholder="name">
+        <input name="name" #name="ngModel" [(ngModel)]="profile.name" placeholder="name">
       </div>
       <div class="form-item">
         <label class="label">Host Name</label>
-        <input class="input" name="presenter" [(ngModel)]="context.presenter">
+        <input class="input" name="presenter" [(ngModel)]="profile.presenter">
       </div>
       <div class="form-item">
         <label class="label">Supporter</label>
-        <input name="supporter" class="input support" [(ngModel)]="context.supporter">
+        <input name="supporter" class="input support" [(ngModel)]="profile.supporter">
       </div>
       <div class="form-item">
         <label class="label">Note</label>
-        <textarea name="comment" class="input comment" [(ngModel)]="context.note"></textarea>
+        <textarea name="comment" class="input comment" [(ngModel)]="profile.note"></textarea>
       </div>
     </form>
   </div>
-  <div class="rounge-settings">
-    <form class="edit-form" #function_form="ngForm">
+  <div class="rounge-options">
+    <form class="edit-form" #configEditor="ngForm">
       <div class="form-item">
+        <label class="label">Round Count a Game</label>
+        <input class="count" type="number">
         <label class="label">Spreadsheet API</label>
         <input >
       </div>
     </form>
   </div>
   <div class="fn-btns">
-    <button class="btn apply"><i class="fa-solid fa-rotate icon"></i>Apply</button>
     <button class="btn new"><i class="fa-solid fa-plus icon"></i>Reset</button>
-    <button class="btn import"><i class="fa-solid fa-download icon"></i>Load</button>
+    <button class="btn import"><i class="fa-solid fa-download icon"></i>Import</button>
     <button class="btn export"><i class="fa-solid fa-upload icon"></i>Export</button>
   </div>
 </div>
