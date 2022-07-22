@@ -23,6 +23,7 @@ import { trigger } from '@angular/animations';
 })
 export class RoungePanelComponent implements OnInit {
   profile:RoungeProfile|null=null;
+  entries:Entry[]=[]
   currentMatchUp:MatchUp|null=null;
 
   showEntries=false;
@@ -45,8 +46,19 @@ export class RoungePanelComponent implements OnInit {
   submit(){
 
   }
-  constructor(private roungeService:RoungeEntryManagerService) { 
-    this.profile=new RoungeProfile("てきとーラウンジ",undefined,"©モンスターファーム2 コーエーテクモゲームス","参加受付は配信概要のフォームより",3,"");
+  constructor(private entryManager:RoungeEntryManagerService) { 
+    const today=new Date();
+    this.profile=
+    new RoungeProfile(
+      "てきとーラウンジ",
+      undefined,
+      "©モンスターファーム2 コーエーテクモゲームス","参加受付は配信概要のフォームより",
+      3,"https://script.google.com/macros/s/AKfycbymDsZ-YueOrnDkd4V_4TNfq7QZfzec-Nlia-P_aC2ARIHfa4a5m_WRQIHfI01GMtC-/exec",
+      new Date(today.getFullYear(),today.getMonth(),today.getDate()),
+      new Date(today.getFullYear(),today.getMonth(),today.getDate()+1)
+    ),
+    this.currentMatchUp=new MatchUp(null,null);
+    entryManager.getEntryIn(this.profile.entryStart,this.profile.entryDeadline,this.profile.apiEndpoint).subscribe(list=>this.entries=list);
   }
   clear(){
     this.showLHS=false;

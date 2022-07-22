@@ -3,7 +3,7 @@
     <form class="edit-form" #profileEditor="ngForm">
       <div class="form-item">
         <label class="label">Rounge Name</label>
-        <input name="name" #name="ngModel" [(ngModel)]="profile.name" placeholder="name">
+        <input name="name" name="name" [(ngModel)]="profile.name" placeholder="name">
       </div>
       <div class="form-item">
         <label class="label">Host Name</label>
@@ -22,10 +22,14 @@
   <div class="rounge-options">
     <form class="edit-form" #configEditor="ngForm">
       <div class="form-item">
-        <label class="label">Round Count a Game</label>
-        <input class="count" type="number">
+        <label class="label">Round</label>
+        <input name="roundCount" class="count" type="number" [(ngModel)]="profile.roundCount">
         <label class="label">Spreadsheet API</label>
-        <input >
+        <input name="epiEndpoint"class="input endpoint" type="textarea" [(ngModel)]="profile.apiEndpoint">
+        <label class="label">Entry Start</label>
+        <input name="entryStart"class="datetime" type="datetime-local" [value]="entry" (change)="onEntryStartChanged($event)">
+        <label class="label">Entry Finish</label>
+        <input name="entryDeadline" class="datetime"type="datetime-local" [value]="deadline" (change)="onDeadlineChanged($event)">
       </div>
     </form>
   </div>

@@ -1,5 +1,7 @@
 import { AnimationTransitionMetadata, animate, animateChild, group, query, sequence, state, style, transition, trigger } from "@angular/animations";
 
+import { Optional } from "@angular/core";
+
 export function generateExcudeTransitions(tags:string[],entry:number,leave:number){
     let rtn:AnimationTransitionMetadata[]=[]
     for (let i = 0; i < tags.length; i++) {
@@ -22,8 +24,8 @@ function generateExcludeTransition(stateA:string,stateB:string,entry:number,leav
                 opacity:0,
                 "transform":"translateY(0.1rem)",
             })
-        ]),
-        query(':leave',animateChild()),
+        ],{optional:true}),
+        query(':leave',animateChild(),{optional:true}),
         sequence([
             query(':leave',[
                 animate(`${leave}s ease-out`,style(
@@ -32,7 +34,7 @@ function generateExcludeTransition(stateA:string,stateB:string,entry:number,leav
                         "transform":"translateY(-0.1rem)"
                     }
                 ))
-            ]),
+            ],{optional:true}),
             query(':enter',[
                 animate(`${entry}s ease-out`,style(
                     {
@@ -40,7 +42,7 @@ function generateExcludeTransition(stateA:string,stateB:string,entry:number,leav
                         "transform":"translateY(-0.1rem)"
                     }
                 ))
-            ])
+            ],{optional:true})
         ])
     ])
 }
@@ -53,8 +55,8 @@ export function generateWildcardTransition(entry:number,leave:number){
                 opacity:0,
                 "transform":"translateY(0.1rem)",
             }),
-        ]),
-        query(':leave',animateChild()),
+        ],{optional:true}),
+        query(':leave',animateChild(),{optional:true}),
         sequence([
             query(':leave',[
                 animate(`${entry}s ease-out`,style(
@@ -62,15 +64,15 @@ export function generateWildcardTransition(entry:number,leave:number){
                         opacity:0,
                         "transform":"translateY(-0.1rem)"
                     }))
-            ]),
+            ],{optional:true}),
             query(':enter',[
                 animate(`${leave}s ease-out`,style(
                     {
                         opacity:1,
                         "transform":"translateY(0)"
                     }))
-            ]),
-            query('@*',animateChild())
+            ],{optional:true}),
+            query('@*',animateChild(),{optional:true})
         ])
     ])
 }
