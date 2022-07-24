@@ -5,6 +5,7 @@ import { RoungePanelComponent } from './rounge-panel.component';
 import { RoungePanelRoutingModule } from './rounge-panel-routing.module';
 import { RoungeProfileEditorComponent } from './rounge-profile-editor/rounge-profile-editor.component';
 import { SharedModule } from './../shared/shared.module';
+import { MatchUpProfileEditorComponent } from './match-up-profile-editor/match-up-profile-editor.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { SharedModule } from './../shared/shared.module';
     RoungeProfileEditorComponent,
     RoungeEntryListComponent,
     MatchUpSideComponent,
+    MatchUpProfileEditorComponent,
   ],
   imports: [
     SharedModule,

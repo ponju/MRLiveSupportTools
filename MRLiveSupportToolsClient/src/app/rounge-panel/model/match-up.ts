@@ -6,20 +6,29 @@ export default class MatchUp{
     pushRoundResult(result:RoundResult){
         this.history.push(result);
     }
+
+    get ready(){
+        return this.seatOne!=null && this.seatTwo!=null;
+    }
+
     get winsForSeatOne(){
-        return this.history.filter((v,i,a)=>v==RoundResult.SeatOne).length;
+        return this.history.filter((v,i,a)=>v.winner==this.seatOne).length;
     }
     get winsForSeatTwo(){
-        return this.history.filter((v,i,a)=>v==RoundResult.SeatTwo).length;
+        return this.history.filter((v,i,a)=>v.winner==this.seatTwo).length;
     }
 
     constructor(public seatOne:Entry|null,public seatTwo:Entry|null) {
         
     }
+
+    clear(){
+        this.seatOne=null;
+        this.seatTwo=null;
+    }
 }
 
-export enum RoundResult{
-    SeatOne,
-    SeatTwo,
-    Draw
+export interface RoundResult{
+    winner:Entry|null,
+    loser:Entry|null
 }

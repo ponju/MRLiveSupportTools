@@ -1,26 +1,25 @@
 <div class="rounge-entry-list">
-    <div class="entry-list">
-        <h2 class="header">Entry list</h2>
-        <span class="sync-btn"></span>
-        <table class="members-list">
-            <tr class="member-info table-header">
-                <th class="state"></th>
-                <th class="entry">Entry</th>
-                <th class="player">Player</th>
-                <th class="playable">Monster</th>
-                <th class="wins">Win</th>
-            </tr>
-            <tr *ngFor="let entry of entries;index as i" class="member-info">
-                <td class="state">{{focusEntries.includes(entry)?'●':''}}</td>
-                <td class="entry">{{entry.entryName}}</td>
-                <td class="player">{{entry.playerName}}</td>
-                <td class="playable">{{entry.playableName}}</td>
-                <td class="wins"></td>
-            </tr>
-        </table>
-        <div class="rounge-summery">
-            <span class="entry">エントリー数:{{entries.length}}</span>
-            <span class="order">{{entries.length-done.length}}人待ち</span>
-        </div>
-    </div>
+  <div class="sync-btn" (click)="sync()"><i class="icon fa-solid fa-rotate"></i></div>
+  <h2 class="header">Entry list</h2>
+  <table class="members-list">
+    <thead class="header-part">
+      <tr class="member-info">
+        <th class="colmn state"></th>
+        <th class="colmn entry">Entry</th>
+        <th class="colmn playable">Monster</th>
+      </tr>
+    </thead>
+    <tbody class="body-part">
+        <tr class="no-entries" *ngIf="entries.length<1">No entries...</tr>
+      <tr *ngFor="let entry of entries;index as i" class="member-info">
+        <td class="colmn state">{{focusEntries.includes(entry)?'●':''}}</td>
+        <td class="colmn entry">{{entry.entryName}}</td>
+        <td class="colmn playable">{{entry.playableName}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="rounge-summery">
+    <span class="entry">エントリー数:{{entries.length}}</span>
+    <span class="order">{{entries.length-done.length}}人待ち</span>
+  </div>
 </div>

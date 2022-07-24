@@ -21,7 +21,7 @@
   height: 100%;
 }
 
-.view-area>.overlay-window{
+.view-area>.overlay-placeholder{
   top:1rem;
   left:0;
   right:0;
@@ -30,6 +30,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.view-area>.overlay-placeholder>.overlay-window{
+  position: absolute;
 }
 .view-area>.side-dock{
   &{

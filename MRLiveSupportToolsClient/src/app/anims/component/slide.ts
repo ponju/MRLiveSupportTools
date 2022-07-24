@@ -22,8 +22,8 @@ export function horizontalSlide(entryPoint: string, entryDuration: number) {
     ]
 }
 
-export const SLIDE_FROM_LEFT=horizontalSlide("-150%",250);
-export const SLIDE_FROM_RIGHT=horizontalSlide("150%",250);
+export const SLIDE_FROM_LEFT=horizontalSlide("-500%",250);
+export const SLIDE_FROM_RIGHT=horizontalSlide("500%",250);
 
 
 export function verticalSlide(entryPoint: string, entryDuration: number) {
@@ -43,5 +43,5 @@ export function verticalSlide(entryPoint: string, entryDuration: number) {
     ]
 }
 
-export const SLIDE_FROM_TOP=verticalSlide("-150%",250);
-export const SLIDE_FROM_BOTTOM=verticalSlide("150%",250);
+export const SLIDE_FROM_TOP=verticalSlide("-500%",250);
+export const SLIDE_FROM_BOTTOM=verticalSlide("500%",250);

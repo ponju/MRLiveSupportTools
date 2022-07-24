@@ -1,0 +1,16 @@
+<div class="match-up-profile-editor">
+  <div class="ctrl-btns">
+    <div class="result-ctrls" *ngIf="this.matchUp?.ready">
+        <button class="btn btn-primary" *ngIf="this.matchUp.seatOne!=null" (click)="this.matchUp.pushRoundResult({winner:this.matchUp.seatOne,loser:this.matchUp.seatTwo})">Player 1 Win</button>
+        <button class="btn btn-primary" *ngIf="this.matchUp.seatTwo!=null" (click)="this.matchUp.pushRoundResult({winner:this.matchUp.seatTwo,loser:this.matchUp.seatOne})">Player 2 Win</button>
+    </div>
+    <div class="sync-ctrls">
+        <button class="btn btn-primary" (click)="initialLoad.emit();"
+          *ngIf="!hasLoadOnce&&this.matchUp?.seatOne==null&&this.matchUp?.seatTwo==null">Initial Load</button>
+        <button class="btn btn-primary" (click)="championContinue.emit();"
+          *ngIf="hasLoadOnce &&this.matchUp?.seatOne!=null">Champion Continue</button>
+        <button class="btn btn-primary" (click)="championShift.emit();"
+          *ngIf="hasLoadOnce&&this.matchUp?.seatOne!=null&&this.matchUp?.seatTwo!=null">Champion Shift</button>
+    </div>
+  </div>
+</div>

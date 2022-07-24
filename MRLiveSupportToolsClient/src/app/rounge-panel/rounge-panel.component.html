@@ -2,18 +2,18 @@
   <ng-container *ngIf="(profile) as prof">
     <div class="view-area">
       <div class="side-dock --lhs">
-        <div [@lhsDock]="currentMatchUp?.seatOne!=null && showLHS">
+        <div [@lhsDock]="currentMatchUp.seatOne!=null && showLHS">
           <match-up-side [playerSide]="1" [seat]="currentMatchUp!.seatOne" [wins]="currentMatchUp!.winsForSeatOne"></match-up-side>
         </div>
       </div>
       <div class="side-dock --rhs">
-        <div [@rhsDock]="currentMatchUp?.seatTwo!=null && showRHS">
+        <div [@rhsDock]="currentMatchUp.seatTwo!=null && showRHS">
           <match-up-side [playerSide]="2" [seat]="currentMatchUp!.seatTwo" [wins]="currentMatchUp!.winsForSeatTwo"></match-up-side>
         </div>
       </div>
-      <div class="overlay-window">
-        <div [@entryList]="showEntries">
-          <rounge-entry-list [entries]="entries" [focusEntries]="focusEntries"></rounge-entry-list>
+      <div class="overlay-placeholder">
+        <div class="overlay-window"[@entryList]="showEntries" >
+          <rounge-entry-list (syncAction)="syncList()" [entries]="entries" [focusEntries]="focusEntries"></rounge-entry-list>
         </div>
       </div>
       <div class="live-brandings-block" (click)="showEntries=!showEntries">
@@ -33,10 +33,12 @@
 
     <div class="ctrl-area">
       <tabset #ctrlTabs>
-        <tab heading="MATCH UP">
-        </tab>
-        <tab heading="OPTIONS">
+        <tab heading="SETUP">
           <rounge-profile-editor [profile]="profile"></rounge-profile-editor>
+        </tab>
+        <tab heading="MATCH UP">
+          <match-up-profile-editor [hasLoadOnce]="hasLoadOnce" [matchUp]="currentMatchUp" (championContinue)="championContinue()" (championShift)="championShift()" (initialLoad)="initialSetup()"></match-up-profile-editor>
+          {{entryManager.latestUpdate}}
         </tab>
       </tabset>
     </div>

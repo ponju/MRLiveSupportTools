@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import Entry from '../model/entry';
 import MatchUp from '../model/match-up';
@@ -15,8 +15,13 @@ export class RoungeEntryListComponent implements OnInit {
   done:Entry[]=[];
   @Input()
   focusEntries:Entry[]=[];
+  @Output()
+  syncAction:EventEmitter<void>=new EventEmitter();
 
   constructor() { }
+  sync(){
+    this.syncAction.emit();
+  }
 
   ngOnInit(): void {
   }

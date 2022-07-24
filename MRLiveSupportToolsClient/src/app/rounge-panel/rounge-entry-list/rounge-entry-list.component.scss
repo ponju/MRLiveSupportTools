@@ -3,103 +3,82 @@
 $table_border: #121212ff;
 
 .rounge-entry-list {
-    display: flex;
     width:100%;
+    max-height:80%;
     max-width:100%;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
+    padding:1rem;
     @include node_skin;
 }
 
-.rounge-info{
-    &{
-        width:100%;
-        display: flex;
-        font-size:1.5rem;
-        padding:0.5rem;
-        margin:1rem
+.rounge-entry-list>.sync-btn{
+    position: absolute;
+    width:1rem;
+    height:1rem;
+    top:0;
+    right:0;
+
+    text-align: center;
+    &>.icon{
+        pointer-events: none;
     }
 }
-
-.entry-list {
-    margin: 0 1rem 1rem;
-    padding: 1rem;
+.rounge-entry-list>.sync-btn:hover{
+    cursor: pointer;
 }
 
-.entry-list>.header {
+.rounge-entry-list>.header {
     text-align: center;
     margin-bottom: 1rem;
 }
-
-.entry-list>.members-list {
-    & {
-        border-collapse: collapse;
-        overflow: scroll;
-        height: 360px;
-        display: block;
-        padding: 0.5rem;
-        color: $invert_part_color;
-        background-color: #ffff;
-    }
-
-    &>.table-header {
-        & {
-            border-bottom: solid 4px;
-        }
-    }
-
-    &>.member-info {
-        & {
-            border-bottom: solid 4px $table_border;
-        }
-
-        &>* {
-            text-align: center;
-            padding: 0.24rem;
-        }
-    }
-
-    &>.member-info.--champion {
-        background-color: #e888;
-    }
-
-    &>.member-info.--challenger {
-        background-color: #88e8;
-    }
-}
-
-.rounge-summery{
+.rounge-entry-list>.members-list{
     &{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    &>*{
-        margin-right:1rem;
-    }
-}
-.champion-info {
-    & {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        height: 100%;
-        margin: 0 1rem 1rem;
-        padding: 0.5rem;
+        display: table;
+        table-layout: fixed;
+        border-collapse: separate;
+        overflow: hidden;
         text-align: center;
-        margin:0 0 1rem;
-        font-size:1.2rem;
+        height:16rem;
     }
 
-    &>.header{
-        font-size:1rem;
-        color: $victory_color;
-        margin-bottom:1rem;
-    }
-    &>* {
+    &>.body-part,&>.header-part{
         display: block;
+        max-height:16rem;
+        padding: 0;
         width:100%;
+
+        &>.no-entries{
+            width:100%;
+        }
+        &>.member-info{
+            display: block;
+            width:100%;
+        }
+        
+        &>.member-info>.colmn{
+            display: inline-block;
+            box-sizing: content-box;
+            width:240px;
+        }
+        &>.member-info>.colmn.state{
+            width:1rem;
+        }
+        
     }
+    &>.body-part{
+        overflow-y: scroll;
+        background-color:whitesmoke;
+        color:$invert_part_color;
+    }
+}
+.rounge-summery{
+    width:100%;
+    text-align: center;
+}
+
+.rounge-summery>.entry{
+    margin-right:1rem;
 }
