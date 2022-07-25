@@ -37,7 +37,7 @@
           <rounge-profile-editor [profile]="profile"></rounge-profile-editor>
         </tab>
         <tab heading="MATCH UP">
-          <match-up-profile-editor [hasLoadOnce]="hasLoadOnce" [matchUp]="currentMatchUp" (championContinue)="championContinue()" (championShift)="championShift()" (initialLoad)="initialSetup()"></match-up-profile-editor>
+          <match-up-profile-editor [matchNum]="currentMatchNum" [hasLoadOnce]="hasLoadOnce" [matchUp]="currentMatchUp" (championContinue)="championContinue()" (championShift)="championShift()" (initialLoad)="initialSetup()"></match-up-profile-editor>
           {{entryManager.latestUpdate}}
         </tab>
       </tabset>

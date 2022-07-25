@@ -11,7 +11,15 @@ export class MatchUpProfileEditorComponent implements OnInit {
   @Input()
   matchUp:MatchUp=new MatchUp(null,null);
   @Input()
+  matchNum:number=-1;
+  @Input()
   hasLoadOnce=false;
+
+  @Output()
+  prevMatch=new EventEmitter();
+  @Output()
+  nextMatch=new EventEmitter();
+
   @Output()
   initialLoad=new EventEmitter();
   @Output()

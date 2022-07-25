@@ -26,6 +26,8 @@ export class RoungePanelComponent implements OnInit {
   entries: Entry[] = [];
   done: Entry[] = [];
   currentMatchUp: MatchUp;
+  currentMatchNum=-1;
+  histories:MatchUp[]=[];
 
   showEntries = true;
   showLHS = false;
@@ -65,7 +67,6 @@ export class RoungePanelComponent implements OnInit {
         new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
       ),
       this.currentMatchUp = new MatchUp(null, null);
-    this.syncList();
   }
   clear() {
     this.showLHS = false;
@@ -82,7 +83,6 @@ export class RoungePanelComponent implements OnInit {
 
     if (this.profile?.apiEndpoint)
       this.entryManager.getEntryDuring(this.profile?.entryStart, this.profile?.entryDeadline, this.profile?.apiEndpoint).subscribe((entries) => {
-        this.entries.splice(0, this.entries.length);
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
           if (this.currentMatchUp.seatOne == null) {
@@ -141,6 +141,10 @@ export class RoungePanelComponent implements OnInit {
         this.currentMatchUp.seatTwo = next;
       }
     }, 1000)
+  }
+
+  revert(){
+
   }
 
   selectTab(tabID: number) {

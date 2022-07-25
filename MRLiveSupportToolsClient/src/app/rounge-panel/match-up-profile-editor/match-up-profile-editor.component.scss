@@ -1,0 +1,127 @@
+@import "/styles/skin";
+
+.match-up-profile-editor{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width:100%;
+}
+.btn{
+    margin:0.24rem;
+    &.--1p{
+        color:$default_font_color;
+        background-color:$player_color_west;
+    }
+    &.--2p{
+        color:$default_font_color;
+        background-color:$player_color_east;
+    }
+}
+
+.ctrl-container{
+    &{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        height:100%;
+        width:100%;
+        padding:1rem;
+    }
+    &>.match-selector{
+        position: absolute;
+        top:0;
+        left:0;
+        font-size:0.8rem;
+    }
+    &>.match-selector>.order:hover{
+        cursor: pointer;
+    }
+}
+
+.ctrl-container>.column{
+    &{
+        height:100%;
+        padding:1rem;
+        width:25%;
+        text-align: center;
+    }
+    .header{
+        border-bottom: solid $default_font_color 2px;
+        margin-bottom:1rem;
+    }
+}
+
+.ctrl-container>.entry-info{
+    text-align: left;
+    .header{
+        border-bottom: solid $default_font_color 2px;
+        margin-bottom:1rem;
+    }
+    .player-info,.farm-info,.monster-info{
+        &{
+            width:100%;
+        }
+        &>.name{
+            text-align: left;
+            width:100%;
+        }
+        &>.input{
+            text-align: left;
+            width:100%;
+            font-size:1.5rem;
+            height:1.5rem;
+        }
+    }
+    
+    .btn{
+        width:45%;
+    }
+}
+.ctrl-container>.round-result{
+    .header{
+        border-bottom: solid $default_font_color 2px;
+        margin-bottom:1rem;
+    }
+    
+    .btn{
+        width:45%;
+    }
+    .round-list{
+        background-color: $default_font_color;
+        color:$invert_part_color;
+        height:60%;
+        margin-top:1rem;
+        margin-bottom:1rem;
+        list-style: decimal;
+        padding-left:1rem;
+    }
+    .round-list>.history{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &>.winner{
+
+        }
+        &>.result{
+
+        }
+        &>.delete{
+            color:$default_font_color;
+            background-color:red;
+            width:1rem;
+            height:1rem;
+            border-radius: 25%;
+            margin-left:1rem;
+        }
+    }
+
+}
+
+.ctrl-container>.match-result{
+    .btn{
+        width:100%;
+    }
+}
