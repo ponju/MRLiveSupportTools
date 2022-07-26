@@ -2,13 +2,13 @@
   <ng-container *ngIf="(profile) as prof">
     <div class="view-area">
       <div class="side-dock --lhs">
-        <div [@lhsDock]="currentMatchUp.seatOne!=null && showLHS">
-          <match-up-side [playerSide]="1" [seat]="currentMatchUp!.seatOne" [wins]="currentMatchUp!.winsForSeatOne"></match-up-side>
+        <div [@lhsDock]="activeMatchUp.seatOne!=null && showLHS">
+          <match-up-side [playerSide]="1" [seat]="activeMatchUp!.seatOne" [wins]="activeMatchUp!.winsForSeatOne"></match-up-side>
         </div>
       </div>
       <div class="side-dock --rhs">
-        <div [@rhsDock]="currentMatchUp.seatTwo!=null && showRHS">
-          <match-up-side [playerSide]="2" [seat]="currentMatchUp!.seatTwo" [wins]="currentMatchUp!.winsForSeatTwo"></match-up-side>
+        <div [@rhsDock]="activeMatchUp.seatTwo!=null && showRHS">
+          <match-up-side [playerSide]="2" [seat]="activeMatchUp!.seatTwo" [wins]="activeMatchUp!.winsForSeatTwo"></match-up-side>
         </div>
       </div>
       <div class="overlay-placeholder">
@@ -37,8 +37,7 @@
           <rounge-profile-editor [profile]="profile"></rounge-profile-editor>
         </tab>
         <tab heading="MATCH UP">
-          <match-up-profile-editor [matchNum]="currentMatchNum" [hasLoadOnce]="hasLoadOnce" [matchUp]="currentMatchUp" (championContinue)="championContinue()" (championShift)="championShift()" (initialLoad)="initialSetup()"></match-up-profile-editor>
-          {{entryManager.latestUpdate}}
+          <match-up-profile-editor (decline)="decline($event)" [matchNum]="activeMatchUpIndex" [hasLoadOnce]="hasLoadOnce" [matchUp]="histories[activeMatchUpIndex]" (onLHSWins)="championContinue()" (onRHSWins)="championShift()" (initialLoad)="initialSetup()" (nextMatch)="nextMatch()" (prevMatch)="reviewMatch()"></match-up-profile-editor>
         </tab>
       </tabset>
     </div>

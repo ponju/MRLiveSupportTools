@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import MatchUp from '../model/match-up';
+import { RoundResult } from './../model/match-up';
 
 @Component({
   selector: 'match-up-profile-editor',
@@ -23,9 +24,11 @@ export class MatchUpProfileEditorComponent implements OnInit {
   @Output()
   initialLoad=new EventEmitter();
   @Output()
-  championShift=new EventEmitter();
+  onRHSWins=new EventEmitter();
   @Output()
-  championContinue=new EventEmitter();
+  onLHSWins=new EventEmitter();
+  @Output()
+  decline=new EventEmitter<MatchUp>();
 
   get lhs(){
     return this.matchUp?.seatOne;
@@ -34,9 +37,12 @@ export class MatchUpProfileEditorComponent implements OnInit {
     return this.matchUp?.seatTwo;
   }
 
+  pushRoundResult(result:0|1|2|-1){
+    this.matchUp.pushRoundResult(result);
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

@@ -25,8 +25,12 @@ export class RoungePanelComponent implements OnInit {
   profile: RoungeProfile | null = null;
   entries: Entry[] = [];
   done: Entry[] = [];
-  currentMatchUp: MatchUp;
-  currentMatchNum=-1;
+
+  get activeMatchUp(){
+    return this.histories[this.activeMatchUpIndex];
+  }
+  activeMatchUpIndex=0;
+
   histories:MatchUp[]=[];
 
   showEntries = true;
@@ -35,17 +39,31 @@ export class RoungePanelComponent implements OnInit {
 
   hasLoadOnce = false;
 
+  nextMatch(){
+    if(this.activeMatchUpIndex<this.histories.length){
+      this.activeMatchUpIndex++;
+    }
+  }
+  reviewMatch(){
+    if(this.activeMatchUpIndex>0){
+      this.activeMatchUpIndex--;
+    }
+  }
+  reviewFirstMatch(){
+    this.activeMatchUpIndex=0;
+  }
+
   get ready() {
-    return this.currentMatchUp.ready;
+    return this.activeMatchUp.ready;
   }
 
   get focusEntries() {
     let rtn: Entry[] = [];
-    if (this.currentMatchUp?.seatOne) {
-      rtn.push(this.currentMatchUp.seatOne)
+    if (this.activeMatchUp?.seatOne) {
+      rtn.push(this.activeMatchUp.seatOne)
     }
-    if (this.currentMatchUp?.seatTwo) {
-      rtn.push(this.currentMatchUp.seatTwo)
+    if (this.activeMatchUp?.seatTwo) {
+      rtn.push(this.activeMatchUp.seatTwo)
     }
     return rtn;
   }
@@ -66,14 +84,15 @@ export class RoungePanelComponent implements OnInit {
         new Date(today.getFullYear(), today.getMonth(), today.getDate()),
         new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
       ),
-      this.currentMatchUp = new MatchUp(null, null);
+      this.activeMatchUpIndex=0;
+      this.histories.push(new MatchUp(null,null));
   }
   clear() {
     this.showLHS = false;
     this.showRHS = false;
 
     setTimeout(() => {
-      this.currentMatchUp.clear();
+      this.activeMatchUp.clear();
     }, 300);
   }
 
@@ -85,23 +104,23 @@ export class RoungePanelComponent implements OnInit {
       this.entryManager.getEntryDuring(this.profile?.entryStart, this.profile?.entryDeadline, this.profile?.apiEndpoint).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
-          if (this.currentMatchUp.seatOne == null) {
+          if (this.activeMatchUp.seatOne == null) {
             let one = this.entries.shift();
             if (one) {
-              this.currentMatchUp.seatOne = one;
+              this.activeMatchUp.seatOne = one;
               this.showLHS = true;
               this.done.push(one);
             }
           }
-          if (this.currentMatchUp.seatTwo == null) {
+          if (this.activeMatchUp.seatTwo == null) {
             let two = this.entries.shift();
             if (two) {
-              this.currentMatchUp.seatTwo = two;
+              this.activeMatchUp.seatTwo = two;
               this.showRHS = true;
               this.done.push(two);
             }
           }
-          if (this.currentMatchUp.ready) {
+          if (this.activeMatchUp.ready) {
             this.hasLoadOnce = true;
             this.showEntries = false;
           }
@@ -116,12 +135,13 @@ export class RoungePanelComponent implements OnInit {
       this.entryManager.getEntryDuring(this.profile?.entryStart, this.profile?.entryDeadline, this.profile?.apiEndpoint).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
-          this.currentMatchUp = new MatchUp(this.currentMatchUp.seatOne, null);
+          this.histories.push(new MatchUp(this.activeMatchUp.seatOne, null));
+          this.activeMatchUpIndex=this.histories.length-1;
           let next = this.entries.shift();
           if (next) {
             this.done.push(next);
             this.showRHS = true;
-            this.currentMatchUp.seatTwo = next;
+            this.activeMatchUp.seatTwo = next;
           }
         }, 1000)
       });
@@ -132,19 +152,40 @@ export class RoungePanelComponent implements OnInit {
     this.showRHS = false;
 
     setTimeout(() => {
-      this.currentMatchUp = new MatchUp(this.currentMatchUp.seatTwo, null);
+      this.histories.push(new MatchUp(this.activeMatchUp.seatTwo, null));
+      this.activeMatchUpIndex=this.histories.length-1;
       this.showLHS = true;
       let next = this.entries.shift();
       if (next) {
         this.done.push(next);
         this.showRHS = true;
-        this.currentMatchUp.seatTwo = next;
+        this.activeMatchUp.seatTwo = next;
       }
     }, 1000)
   }
 
   revert(){
 
+  }
+
+  decline(match:MatchUp){
+    this.showRHS=false;
+    this.showLHS=false;
+    setTimeout(()=>{
+      if(this.histories.length<2){
+        return;
+      }
+
+      if(match.seatTwo){
+        this.entries.unshift(match.seatTwo);
+      }
+      this.histories.splice(this.histories.findIndex((e)=>e==match),1);
+      if(this.activeMatchUpIndex>this.histories.length-1){
+        this.activeMatchUpIndex=this.histories.length;
+      }
+      this.showRHS=true;
+      this.showLHS=true;  
+    },1000)
   }
 
   selectTab(tabID: number) {

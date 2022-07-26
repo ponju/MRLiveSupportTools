@@ -1,8 +1,8 @@
 <div class="match-up-profile-editor">
-  <div class="ctrl-container" *ngShow="!hasLoadOnce">
-    <button class="btn btn-primary" (click)="initialLoad.emit();" *ngIf="!hasLoadOnce">Initial Load</button>
+  <div class="ctrl-container" *ngIf="!hasLoadOnce">
+    <button class="btn btn-primary" (click)="initialLoad.emit();">Initial Load</button>
   </div>
-  <div class="ctrl-container" *ngShow="hasLoadOnce">
+  <div class="ctrl-container" *ngIf="hasLoadOnce">
     <div class="match-selector">
       <span (click)="prevMatch.emit()" class="revert order">
         ◀
@@ -17,31 +17,34 @@
     <div class="entry-info column">
       <h3 class="header">Player1</h3>
       <form class="profile-editor">
-        <div class="player-info"><label class="name" [(ngModel)]="matchUp.seatOne!.entryName">Player</label><input class="input"></div>
-        <div class="farm-info"><label class="name" [(ngModel)]="matchUp.seatOne!.playerName">Farm</label><input class="input"></div>
-        <div class="monster-info"><label class="name"[(ngModel)]="matchUp.seatOne!.playableName">Monster</label><input class="input"></div>
+        <div class="player-info"><label class="name" for="entryName">Player</label><input name="entryName" [(ngModel)]="matchUp.seatOne!.entryName" class="input"></div>
+        <div class="farm-info"><label class="name" for="farmName">Farm</label><input class="input" name="farmName" [(ngModel)]="matchUp.seatOne!.playerName"></div>
+        <div class="monster-info"><label class="name"for="monsterName">Monster</label><input name="monsterName" [(ngModel)]="matchUp.seatOne!.playableName" class="input"></div>
       </form>
     </div>
     <div class="entry-info column">
       <h3 class="header">Player2</h3>
       <form class="profile-editor">
-        <div class="player-info"><label class="name" [(ngModel)]="matchUp.seatTwo!.entryName">Player</label><input class="input"></div>
-        <div class="farm-info"><label class="name" [(ngModel)]="matchUp.seatTwo!.playerName">Farm</label><input class="input"></div>
-        <div class="monster-info"><label class="name"[(ngModel)]="matchUp.seatTwo!.playableName">Monster</label><input class="input"></div>
+        <div class="player-info"><label class="name" for="entryName">Player</label><input name="entryName" [(ngModel)]="matchUp.seatTwo!.entryName" class="input"></div>
+        <div class="farm-info"><label class="name" for="farmName">Farm</label><input class="input" name="farmName" [(ngModel)]="matchUp.seatTwo!.playerName"></div>
+        <div class="monster-info"><label class="name"for="monsterName">Monster</label><input name="monsterName" [(ngModel)]="matchUp.seatTwo!.playableName" class="input"></div>
       </form>
     </div>
     <div class="round-result column">
-      <h3 class="header">Game Result</h3>
+      <h3 class="header">Round Result</h3>
       <ol class="round-list">
         <li class="history" *ngFor="let item of matchUp.history;index as i;">
-          <div class="winner">{{item.winner}} Wins</div>
-          <div class="delete">×</div>
+          <div class="btn --1p" *ngIf="item==1">1P</div>
+          <div class="btn --2p" *ngIf="item==2">2P</div>
+          <div class="btn --2p" *ngIf="item==-1">DRAW</div>
+          <div class="delete" (click)="matchUp.history.splice(i,1)">×</div>
         </li>
+        <div class="">{{matchUp.updated}}</div>
       </ol>
-      <button class="btn --1p">
+      <button class="btn --1p" (click)="pushRoundResult(1)">
         1P
       </button>
-      <button class="btn --2p">
+      <button class="btn --2p"(click)="pushRoundResult(2)">
         2P
       </button>
     </div>
@@ -52,13 +55,13 @@
           <div class=""></div>
         </li>
       </ul>
-      <button class="btn --1p">
+      <button class="btn --1p" (click)="onLHSWins.emit();">
         1P Wins
       </button>
-      <button class="btn --2p">
+      <button class="btn --2p" (click)="onRHSWins.emit()">
         2P Wins
       </button>
-      <button class="btn btn-outline-danger">Delete</button>
+      <button class="btn btn-outline-danger" (click)="decline.emit(matchUp)">Decline</button>
     </div>
   </div>
 
@@ -71,19 +74,5 @@
   </div>
   <div class="matchup-result">
 
-  </div>
-  <div class="result-ctrls" *ngIf="this.matchUp?.ready">
-    <button class="btn btn-primary" *ngIf="this.matchUp.seatOne!=null"
-      (click)="this.matchUp.pushRoundResult({winner:this.matchUp.seatOne,loser:this.matchUp.seatTwo})">Player 1
-      Win</button>
-    <button class="btn btn-primary" *ngIf="this.matchUp.seatTwo!=null"
-      (click)="this.matchUp.pushRoundResult({winner:this.matchUp.seatTwo,loser:this.matchUp.seatOne})">Player 2
-      Win</button>
-  </div>
-  <div class="sync-ctrls">
-    <button class="btn btn-primary" (click)="championContinue.emit();"
-      *ngIf="hasLoadOnce &&this.matchUp?.seatOne!=null">Champion Continue</button>
-    <button class="btn btn-primary" (click)="championShift.emit();"
-      *ngIf="hasLoadOnce&&this.matchUp?.seatOne!=null&&this.matchUp?.seatTwo!=null">Champion Shift</button>
   </div>
 </div>
