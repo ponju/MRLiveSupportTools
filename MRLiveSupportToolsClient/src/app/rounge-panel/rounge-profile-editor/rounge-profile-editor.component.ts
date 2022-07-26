@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import RoungeProfile from '../model/rounge-context';
 
@@ -10,6 +10,10 @@ import RoungeProfile from '../model/rounge-context';
 export class RoungeProfileEditorComponent implements OnInit {
   @Input()
   profile!:RoungeProfile;
+  @Input()
+  hasLoadedOnce:boolean=false;
+  @Output()
+  initialSync:EventEmitter<void>=new EventEmitter();
 
   entry="";
   deadline=""

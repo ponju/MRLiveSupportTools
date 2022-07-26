@@ -27,9 +27,10 @@
         <label class="label">Spreadsheet API</label>
         <input name="epiEndpoint"class="input endpoint" type="textarea" [(ngModel)]="profile.apiEndpoint">
         <label class="label">Entry Start</label>
-        <input name="entryStart"class="datetime" type="datetime-local" [value]="entry" (change)="onEntryStartChanged($event)">
+        <input name="entryStart"class="datetime" type="datetime-local" [value]="entry" (blur)="onEntryStartChanged($event)">
         <label class="label">Entry Finish</label>
-        <input name="entryDeadline" class="datetime"type="datetime-local" [value]="deadline" (change)="onDeadlineChanged($event)">
+        <input name="entryDeadline" class="datetime"type="datetime-local" [value]="deadline" (blur)="onDeadlineChanged($event)">
+        <button class="btn btn-primary" [disabled]="hasLoadedOnce" (click)="initialSync.emit();">Initial Load</button>
       </div>
     </form>
   </div>

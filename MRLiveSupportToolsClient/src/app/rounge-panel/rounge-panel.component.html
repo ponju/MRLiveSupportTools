@@ -34,10 +34,10 @@
     <div class="ctrl-area">
       <tabset #ctrlTabs>
         <tab heading="SETUP">
-          <rounge-profile-editor [profile]="profile"></rounge-profile-editor>
+          <rounge-profile-editor [hasLoadedOnce]="hasLoadedOnce"(initialSync)="initialSetup()" [profile]="profile"></rounge-profile-editor>
         </tab>
         <tab heading="MATCH UP">
-          <match-up-profile-editor (decline)="decline($event)" [matchNum]="activeMatchUpIndex" [hasLoadOnce]="hasLoadOnce" [matchUp]="histories[activeMatchUpIndex]" (onLHSWins)="championContinue()" (onRHSWins)="championShift()" (initialLoad)="initialSetup()" (nextMatch)="nextMatch()" (prevMatch)="reviewMatch()"></match-up-profile-editor>
+          <match-up-profile-editor (decline)="decline($event)" [matchNum]="activeMatchUpIndex+1" [matchUp]="histories[activeMatchUpIndex]" (onLHSWins)="championContinue()" (onRHSWins)="championShift()" (nextMatch)="nextMatch()" (prevMatch)="reviewMatch()"></match-up-profile-editor>
         </tab>
       </tabset>
     </div>

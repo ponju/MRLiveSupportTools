@@ -37,7 +37,7 @@ export class RoungePanelComponent implements OnInit {
   showLHS = false;
   showRHS = false;
 
-  hasLoadOnce = false;
+  hasLoadedOnce = false;
 
   nextMatch(){
     if(this.activeMatchUpIndex<this.histories.length){
@@ -121,7 +121,7 @@ export class RoungePanelComponent implements OnInit {
             }
           }
           if (this.activeMatchUp.ready) {
-            this.hasLoadOnce = true;
+            this.hasLoadedOnce = true;
             this.showEntries = false;
           }
         }, 1000)
