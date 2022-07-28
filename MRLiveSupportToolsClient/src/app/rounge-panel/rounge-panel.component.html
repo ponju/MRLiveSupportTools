@@ -3,7 +3,7 @@
     <div class="view-area">
       <div class="side-dock --lhs">
         <div [@lhsDock]="activeMatchUp.seatOne!=null && showLHS">
-          <match-up-side [playerSide]="1" [seat]="activeMatchUp!.seatOne" [wins]="activeMatchUp!.winsForSeatOne"></match-up-side>
+          <match-up-side [playerSide]="1" [seat]="activeMatchUp!.seatOne" [wins]="activeMatchUp!.winsForSeatOne" [matchWins]="championMatchCount"></match-up-side>
         </div>
       </div>
       <div class="side-dock --rhs">
@@ -13,7 +13,7 @@
       </div>
       <div class="overlay-placeholder">
         <div class="overlay-window"[@entryList]="showEntries" >
-          <rounge-entry-list (syncAction)="syncList()" [entries]="entries" [focusEntries]="focusEntries"></rounge-entry-list>
+          <rounge-entry-list (syncAction)="syncList()" [entries]="entries" [champInfo]="groundChampInfo"></rounge-entry-list>
         </div>
       </div>
       <div class="live-brandings-block" (click)="showEntries=!showEntries">

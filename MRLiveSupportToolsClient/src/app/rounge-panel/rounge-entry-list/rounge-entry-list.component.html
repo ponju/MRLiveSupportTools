@@ -12,7 +12,6 @@
     <tbody class="body-part">
         <tr class="no-entries" *ngIf="entries.length<1">No entries...</tr>
       <tr *ngFor="let entry of entries;index as i" class="member-info">
-        <td class="colmn state">{{focusEntries.includes(entry)?'●':''}}</td>
         <td class="colmn entry">{{entry.entryName}}</td>
         <td class="colmn playable">{{entry.playableName}}</td>
       </tr>
@@ -21,5 +20,8 @@
   <div class="rounge-summery">
     <span class="entry">エントリー数:{{entries.length}}</span>
     <span class="order">{{entries.length-done.length}}人待ち</span>
+    <div class="ground-Champ" *ngIf="champInfo">
+      本日のグランドチャンピオン:{{champInfo.champ.playableName}}({{champInfo.champ.playerName}} Farm),{{champInfo.winCount}}
+    </div>
   </div>
 </div>

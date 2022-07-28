@@ -13,10 +13,10 @@ export class RoungeEntryListComponent implements OnInit {
   entries:Entry[]=[];
   @Input()
   done:Entry[]=[];
-  @Input()
-  focusEntries:Entry[]=[];
   @Output()
   syncAction:EventEmitter<void>=new EventEmitter();
+  @Input()
+  champInfo:null|{champ:Entry,winCount:number}=null;
 
   constructor() { }
   sync(){

@@ -57,17 +57,25 @@ export class RoungePanelComponent implements OnInit {
     return this.activeMatchUp.ready;
   }
 
-  get focusEntries() {
-    let rtn: Entry[] = [];
-    if (this.activeMatchUp?.seatOne) {
-      rtn.push(this.activeMatchUp.seatOne)
+  get groundChampInfo(){
+    let winCount=0;
+    let groundChamp:Entry|null=null;
+    this.done.forEach((entry)=>{
+      let wins=this.histories.filter((m)=>m.winner==entry);
+      if(winCount<wins.length){
+        winCount=wins.length;
+        groundChamp=entry;
+      }
+    });
+    if(groundChamp){
+      return {champ:groundChamp,winCount:winCount}
+    }else{
+      return null;
     }
-    if (this.activeMatchUp?.seatTwo) {
-      rtn.push(this.activeMatchUp.seatTwo)
-    }
-    return rtn;
   }
-
+  get championMatchCount(){
+    return this.histories.filter(m=>m.seatOne==this.activeMatchUp.seatOne).length;
+  }
 
   @ViewChild('ctrlTabs', { static: false }) ctrlTabs?: TabsetComponent;
   submit() {

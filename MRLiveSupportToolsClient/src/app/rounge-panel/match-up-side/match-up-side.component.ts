@@ -16,6 +16,8 @@ export class MatchUpSideComponent implements OnInit {
   seat:Entry|null=null;
   @Input()
   wins:number=0;
+  @Input()
+  matchWins:number|undefined=0;
 
   get winArray(){
     let rtn:number[]=[]

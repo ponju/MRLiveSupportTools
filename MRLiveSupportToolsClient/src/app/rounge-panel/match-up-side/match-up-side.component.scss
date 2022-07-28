@@ -15,23 +15,11 @@
     margin-bottom: 1rem;
   }
 
-  &>.side-description {
-    width: 100%;
-    margin: 1rem 0 2rem;
-    text-align: center;
+  &>.win-count {
+    position: absolute;
+    top: 0;
+    left: 0;
     color: $victory_color;
-    font-size: 1.2rem;
-
-    .icon {
-      margin: 0.5rem;
-    }
-
-    &>.win-count {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-    }
   }
 
   &.--1p {

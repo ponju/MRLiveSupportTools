@@ -1,4 +1,5 @@
 <div class="match-up-side">
+  <div class="win-count" *ngIf="matchWins!=undefined && matchWins>1">{{matchWins-1}}</div>
   <div class="side">{{playerSide}}P</div>
   <div class="player-profile">
     <div class="header">Breeder</div>
