@@ -1,14 +1,14 @@
 <div class="rounge-dashboard">
   <ng-container *ngIf="(profile) as prof">
     <div class="view-area">
-      <div class="side-dock --lhs">
-        <div [@lhsDock]="activeMatchUp.seatOne!=null && showLHS">
-          <match-up-side [playerSide]="1" [seat]="activeMatchUp!.seatOne" [wins]="activeMatchUp!.winsForSeatOne" [matchWins]="championMatchCount"></match-up-side>
+      <div class="side-dock --lhs" *ngIf="activeMatchUp">
+        <div [@lhsDock]="activeMatchUp.seatOne!=undefined && showLHS">
+          <match-up-side [playerSide]="1" [seat]="activeMatchUp?.seatOne" [wins]="activeMatchUp==undefined?0:activeMatchUp.winsForSeatOne" [matchWins]="championMatchCount"></match-up-side>
         </div>
       </div>
-      <div class="side-dock --rhs">
-        <div [@rhsDock]="activeMatchUp.seatTwo!=null && showRHS">
-          <match-up-side [playerSide]="2" [seat]="activeMatchUp!.seatTwo" [wins]="activeMatchUp!.winsForSeatTwo"></match-up-side>
+      <div class="side-dock --rhs" *ngIf="activeMatchUp">
+        <div [@rhsDock]="activeMatchUp.seatTwo!=undefined && showRHS">
+          <match-up-side [playerSide]="2" [seat]="activeMatchUp?.seatTwo" [wins]="activeMatchUp!.winsForSeatTwo"></match-up-side>
         </div>
       </div>
       <div class="overlay-placeholder">

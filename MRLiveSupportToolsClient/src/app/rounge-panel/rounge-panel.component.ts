@@ -12,6 +12,7 @@ import RoungeProfile from './model/rounge-profile';
 import { SLIDE_FROM_TOP } from './../anims/component/slide';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { trigger } from '@angular/animations';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'rounge-dashboard',
@@ -43,13 +44,17 @@ export class RoungePanelComponent implements OnInit {
   hasLoadedOnce = false;
 
   nextMatch() {
-    if (this.activeMatchUpIndex < this.histories.length) {
+    if (this.activeMatchUpIndex < this.histories.length-1) {
       this.activeMatchUpIndex++;
+      this.showLHS=this.activeMatchUp.seatOne!=undefined;
+      this.showRHS=this.activeMatchUp.seatTwo!=undefined;
     }
   }
   reviewMatch() {
     if (this.activeMatchUpIndex > 0) {
       this.activeMatchUpIndex--;
+      this.showLHS=this.activeMatchUp.seatOne!=undefined;
+      this.showRHS=this.activeMatchUp.seatTwo!=undefined;
     }
   }
   reviewFirstMatch() {
@@ -84,7 +89,7 @@ export class RoungePanelComponent implements OnInit {
   submit() {
 
   }
-  constructor(public entryManager: GSSEntryLoaderService) {
+  constructor(public entryManager: GSSEntryLoaderService, private spinner: NgxSpinnerService) {
     const today = moment();
     const morning = today.clone();
     morning.hour(0);
@@ -100,7 +105,7 @@ export class RoungePanelComponent implements OnInit {
         3
       ),
       this.activeMatchUpIndex = 0;
-    this.histories.push(new MatchUp(null, null));
+    this.histories.push(new MatchUp(undefined, undefined));
     this.loaderOption = new EntryLoaderOption("https://script.google.com/macros/s/AKfycbxSjkT-vAAtrGNZ29rWJgYktimY1stcd0d1FInxYH95qsZW8kbzIhjoOSTmW5yzO_wF/exec",
       morning,
       night
@@ -119,7 +124,8 @@ export class RoungePanelComponent implements OnInit {
     this.showRHS = false;
     this.showLHS = false;
 
-    if (this.loaderOption?.apiEndpoint)
+    if (this.loaderOption?.apiEndpoint) {
+      this.spinner.show();
       this.entryManager.getEntry(this.loaderOption).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
@@ -143,35 +149,58 @@ export class RoungePanelComponent implements OnInit {
             this.hasLoadedOnce = true;
             this.showEntries = false;
           }
+          if(this.loaderOption){
+            this.loaderOption.entryStart=moment();
+          }
+
+          this.spinner.hide();
         }, 1000)
       });
+    }
   }
 
   championContinue() {
     this.showRHS = false;
+    if (!this.loaderOption) {
+      return;
+    }
 
-    if (this.loaderOption?.apiEndpoint) {
+    if (this.loaderOption.apiEndpoint) {
+      this.spinner.show();
       this.entryManager.getEntry(this.loaderOption).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
-          this.histories.push(new MatchUp(this.activeMatchUp.seatOne, null));
-          this.activeMatchUpIndex = this.histories.length - 1;
           let next = this.entries.shift();
+          if (this.activeMatchUp.seatTwo) {
+            this.histories.push(new MatchUp(this.activeMatchUp.seatOne, undefined));
+            this.activeMatchUpIndex = this.histories.length - 1;
+          }
           if (next) {
             this.done.push(next);
             this.showRHS = true;
             this.activeMatchUp.seatTwo = next;
           }
+
+
+          if (this.loaderOption) {
+            this.loaderOption.entryStart = moment();
+          }
+          this.spinner.hide();
         }, 1000)
       });
     }
   }
   championShift() {
+    if (!this.activeMatchUp.seatTwo) {
+      console.error("No challenger defined");
+      return;
+    }
+
     this.showLHS = false;
     this.showRHS = false;
 
     setTimeout(() => {
-      this.histories.push(new MatchUp(this.activeMatchUp.seatTwo, null));
+      this.histories.push(new MatchUp(this.activeMatchUp.seatTwo, undefined));
       this.activeMatchUpIndex = this.histories.length - 1;
       this.showLHS = true;
       let next = this.entries.shift();

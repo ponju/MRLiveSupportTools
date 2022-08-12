@@ -21,13 +21,13 @@ export default class MatchUp{
         return this.history.filter((v,i,a)=>v==RoundResult.Two).length;
     }
 
-    constructor(public seatOne:Entry|null,public seatTwo:Entry|null) {
+    constructor(public seatOne:Entry|undefined,public seatTwo:Entry|undefined) {
         
     }
 
     clear(){
-        this.seatOne=null;
-        this.seatTwo=null;
+        this.seatOne=undefined;
+        this.seatTwo=undefined;
     }
 }
 

@@ -13,7 +13,7 @@ export class MatchUpSideComponent implements OnInit {
   @Input()
   playerSide:number=0;
   @Input()
-  seat:Entry|null=null;
+  seat?:Entry=undefined;
   @Input()
   wins:number=0;
   @Input()

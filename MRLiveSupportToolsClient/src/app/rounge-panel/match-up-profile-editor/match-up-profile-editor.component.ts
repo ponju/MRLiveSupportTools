@@ -10,7 +10,7 @@ import { RoundResult } from './../model/match-up';
 })
 export class MatchUpProfileEditorComponent implements OnInit {
   @Input()
-  matchUp:MatchUp=new MatchUp(null,null);
+  matchUp?:MatchUp;
   @Input()
   matchNum:number=-1;
 
@@ -34,7 +34,7 @@ export class MatchUpProfileEditorComponent implements OnInit {
   }
 
   pushRoundResult(result:0|1|2|-1){
-    this.matchUp.pushRoundResult(result);
+    this.matchUp?.pushRoundResult(result);
   }
 
   constructor() { }

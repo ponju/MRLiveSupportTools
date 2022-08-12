@@ -1,5 +1,5 @@
 <div class="match-up-profile-editor">
-  <div class="ctrl-container">
+  <div class="ctrl-container" *ngIf="matchUp">
     <div class="match-selector">
       <span (click)="prevMatch.emit()" class="revert order">
         ◀
@@ -15,24 +15,24 @@
 
     <div class="entry-info column">
       <h3 class="header">Player1</h3>
-      <form class="profile-editor">
+      <form class="profile-editor" *ngIf="matchUp.seatOne as seat">
         <div class="player-info"><label class="name" for="entryName">Player</label><input name="entryName"
-            [(ngModel)]="matchUp.seatOne!.entryName" class="input"></div>
+            [(ngModel)]="seat.entryName" class="input"></div>
         <div class="farm-info"><label class="name" for="farmName">Farm</label><input class="input" name="farmName"
-            [(ngModel)]="matchUp.seatOne!.playerName"></div>
+            [(ngModel)]="seat.playerName"></div>
         <div class="monster-info"><label class="name" for="monsterName">Monster</label><input name="monsterName"
-            [(ngModel)]="matchUp.seatOne!.playableName" class="input"></div>
+            [(ngModel)]="seat.playableName" class="input"></div>
       </form>
     </div>
     <div class="entry-info column">
       <h3 class="header">Player2</h3>
-      <form class="profile-editor">
+      <form class="profile-editor" *ngIf="matchUp.seatTwo as seat">
         <div class="player-info"><label class="name" for="entryName">Player</label><input name="entryName"
-            [(ngModel)]="matchUp.seatTwo!.entryName" class="input"></div>
+            [(ngModel)]="seat.entryName" class="input"></div>
         <div class="farm-info"><label class="name" for="farmName">Farm</label><input class="input" name="farmName"
-            [(ngModel)]="matchUp.seatTwo!.playerName"></div>
+            [(ngModel)]="seat.playerName"></div>
         <div class="monster-info"><label class="name" for="monsterName">Monster</label><input name="monsterName"
-            [(ngModel)]="matchUp.seatTwo!.playableName" class="input"></div>
+            [(ngModel)]="seat.playableName" class="input"></div>
       </form>
     </div>
     <div class="round-result column">
@@ -62,9 +62,12 @@
       <button class="btn --1p" (click)="onLHSWins.emit();">
         1P Wins
       </button>
-      <button class="btn --2p" (click)="onRHSWins.emit()">
+      <button class="btn --2p" [disabled]="matchUp==undefined || matchUp.seatTwo==undefined" (click)="onRHSWins.emit()">
         2P Wins
       </button>
     </div>
+  </div>
+  <div class="ctrl-container" *ngIf="!matchUp">
+    No match defined
   </div>
 </div>
