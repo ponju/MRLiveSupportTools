@@ -32,6 +32,7 @@
     </div>
 
     <div class="ctrl-area">
+      <ngx-spinner size="large" [fullScreen]="false" type="line-scale" class="spinner-screen">Loading...</ngx-spinner>
       <tabset #ctrlTabs>
         <tab heading="SETUP">
           <rounge-config-editor [profile]="profile"[loaderOption]="loaderOption" [hasLoadedOnce]="hasLoadedOnce"(initialSync)="initialSetup()" ></rounge-config-editor>
