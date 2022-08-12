@@ -97,5 +97,8 @@
       }
     }
   },
-  "defaultProject": "MRLiveSupportToolsClient"
+  "defaultProject": "MRLiveSupportToolsClient",
+  "cli": {
+    "analytics": "5713fce8-f638-47fb-b561-217f7a446a0f"
+  }
 }

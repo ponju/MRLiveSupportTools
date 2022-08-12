@@ -1,6 +1,6 @@
 <div class="rounge-profile-editor">
   <div class="rounge-options">
-    <form class="edit-form" #profileEditor="ngForm">
+    <form class="edit-form" #profileEditor="ngForm" *ngIf="profile">
       <div class="form-item">
         <label class="label">Rounge Name</label>
         <input name="name" name="name" [(ngModel)]="profile.name" placeholder="name">
@@ -18,21 +18,27 @@
         <textarea name="comment" class="input comment" [(ngModel)]="profile.note"></textarea>
       </div>
     </form>
+    <div class="edit-form" *ngIf="!profile">
+      No Rounge Profile
+    </div>
   </div>
   <div class="rounge-options">
-    <form class="edit-form" #configEditor="ngForm">
+    <form class="edit-form" #configEditor="ngForm" *ngIf="loaderOption">
       <div class="form-item">
         <label class="label">Round</label>
-        <input name="roundCount" class="count" type="number" [(ngModel)]="profile.roundCount">
         <label class="label">Spreadsheet API</label>
-        <input name="epiEndpoint"class="input endpoint" type="textarea" [(ngModel)]="profile.apiEndpoint">
+        <input name="epiEndpoint"class="input endpoint" type="textarea" [(ngModel)]="loaderOption.apiEndpoint">
         <label class="label">Entry Start</label>
-        <input name="entryStart"class="datetime" type="datetime-local" [value]="entry" (blur)="onEntryStartChanged($event)">
+        <input name="entryStart"class="datetime" type="datetime-local" [defaultValue]="entryStart" (blur)="onEntryStartChanged($event)">
         <label class="label">Entry Finish</label>
-        <input name="entryDeadline" class="datetime"type="datetime-local" [value]="deadline" (blur)="onDeadlineChanged($event)">
+        <input name="entryDeadline" class="datetime"type="datetime-local" [defaultValue]="entryDeadline" (blur)="onDeadlineChanged($event)">
         <button class="btn btn-primary" [disabled]="hasLoadedOnce" (click)="initialSync.emit();">Initial Load</button>
+        {{entryStart}}
       </div>
     </form>
+    <div class="edit-form" *ngIf="!loaderOption">
+      <p>No Loader Options</p>
+    </div>
   </div>
   <div class="fn-btns">
     <button class="btn new"><i class="fa-solid fa-plus icon"></i>Reset</button>

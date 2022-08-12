@@ -1,14 +1,16 @@
+import * as moment from 'moment';
+
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import MatchUp, { RoundResult } from './model/match-up';
 import { Observable, observable } from 'rxjs';
 import { SLIDE_FROM_LEFT, SLIDE_FROM_RIGHT } from '../anims/component/slide';
 
 import Entry from './model/entry';
-import { RoungeEntryManagerService } from './../services/rounge/rounge-entry-manager.service';
-import RoungeProfile from './model/rounge-context';
+import { EntryLoaderOption } from './model/entry-loader-option';
+import { GSSEntryLoaderService } from '../services/rounge/gss-entry-loader.service';
+import RoungeProfile from './model/rounge-profile';
 import { SLIDE_FROM_TOP } from './../anims/component/slide';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { generateExcudeTransitions } from 'src/app/anims/panel-switch/excude';
 import { trigger } from '@angular/animations';
 
 @Component({
@@ -22,16 +24,17 @@ import { trigger } from '@angular/animations';
   ]
 })
 export class RoungePanelComponent implements OnInit {
-  profile: RoungeProfile | null = null;
+  profile?: RoungeProfile;
+  loaderOption?: EntryLoaderOption
   entries: Entry[] = [];
   done: Entry[] = [];
 
-  get activeMatchUp(){
+  get activeMatchUp() {
     return this.histories[this.activeMatchUpIndex];
   }
-  activeMatchUpIndex=0;
+  activeMatchUpIndex = 0;
 
-  histories:MatchUp[]=[];
+  histories: MatchUp[] = [];
 
   showEntries = true;
   showLHS = false;
@@ -39,61 +42,69 @@ export class RoungePanelComponent implements OnInit {
 
   hasLoadedOnce = false;
 
-  nextMatch(){
-    if(this.activeMatchUpIndex<this.histories.length){
+  nextMatch() {
+    if (this.activeMatchUpIndex < this.histories.length) {
       this.activeMatchUpIndex++;
     }
   }
-  reviewMatch(){
-    if(this.activeMatchUpIndex>0){
+  reviewMatch() {
+    if (this.activeMatchUpIndex > 0) {
       this.activeMatchUpIndex--;
     }
   }
-  reviewFirstMatch(){
-    this.activeMatchUpIndex=0;
+  reviewFirstMatch() {
+    this.activeMatchUpIndex = 0;
   }
 
   get ready() {
     return this.activeMatchUp.ready;
   }
 
-  get groundChampInfo(){
-    let winCount=0;
-    let groundChamp:Entry|null=null;
-    this.done.forEach((entry)=>{
-      let wins=this.histories.filter((m)=>m.winner==entry);
-      if(winCount<wins.length){
-        winCount=wins.length;
-        groundChamp=entry;
+  get groundChampInfo() {
+    let winCount = 0;
+    let groundChamp: Entry | null = null;
+    this.done.forEach((entry) => {
+      let wins = this.histories.filter((m) => m.winner == entry);
+      if (winCount < wins.length) {
+        winCount = wins.length;
+        groundChamp = entry;
       }
     });
-    if(groundChamp){
-      return {champ:groundChamp,winCount:winCount}
-    }else{
+    if (groundChamp) {
+      return { champ: groundChamp, winCount: winCount }
+    } else {
       return null;
     }
   }
-  get championMatchCount(){
-    return this.histories.filter(m=>m.seatOne==this.activeMatchUp.seatOne).length;
+  get championMatchCount() {
+    return this.histories.filter(m => m.seatOne == this.activeMatchUp.seatOne).length;
   }
 
   @ViewChild('ctrlTabs', { static: false }) ctrlTabs?: TabsetComponent;
   submit() {
 
   }
-  constructor(public entryManager: RoungeEntryManagerService) {
-    const today = new Date();
+  constructor(public entryManager: GSSEntryLoaderService) {
+    const today = moment();
+    const morning = today.clone();
+    morning.hour(0);
+    morning.minute(0);
+    morning.second(0);
+    const night = morning.clone();
+    night.date(morning.date() + 1);
     this.profile =
       new RoungeProfile(
         "てきとーラウンジ",
         undefined,
         "©モンスターファーム2 コーエーテクモゲームス", "参加受付は配信概要のフォームより",
-        3, "https://script.google.com/macros/s/AKfycbxSjkT-vAAtrGNZ29rWJgYktimY1stcd0d1FInxYH95qsZW8kbzIhjoOSTmW5yzO_wF/exec",
-        new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-        new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
+        3
       ),
-      this.activeMatchUpIndex=0;
-      this.histories.push(new MatchUp(null,null));
+      this.activeMatchUpIndex = 0;
+    this.histories.push(new MatchUp(null, null));
+    this.loaderOption = new EntryLoaderOption("https://script.google.com/macros/s/AKfycbxSjkT-vAAtrGNZ29rWJgYktimY1stcd0d1FInxYH95qsZW8kbzIhjoOSTmW5yzO_wF/exec",
+      morning,
+      night
+    )
   }
   clear() {
     this.showLHS = false;
@@ -108,8 +119,8 @@ export class RoungePanelComponent implements OnInit {
     this.showRHS = false;
     this.showLHS = false;
 
-    if (this.profile?.apiEndpoint)
-      this.entryManager.getEntryDuring(this.profile?.entryStart, this.profile?.entryDeadline, this.profile?.apiEndpoint).subscribe((entries) => {
+    if (this.loaderOption?.apiEndpoint)
+      this.entryManager.getEntry(this.loaderOption).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
           if (this.activeMatchUp.seatOne == null) {
@@ -139,12 +150,12 @@ export class RoungePanelComponent implements OnInit {
   championContinue() {
     this.showRHS = false;
 
-    if (this.profile?.apiEndpoint) {
-      this.entryManager.getEntryDuring(this.profile?.entryStart, this.profile?.entryDeadline, this.profile?.apiEndpoint).subscribe((entries) => {
+    if (this.loaderOption?.apiEndpoint) {
+      this.entryManager.getEntry(this.loaderOption).subscribe((entries) => {
         entries.forEach(e => this.entries.push(e));
         setTimeout(() => {
           this.histories.push(new MatchUp(this.activeMatchUp.seatOne, null));
-          this.activeMatchUpIndex=this.histories.length-1;
+          this.activeMatchUpIndex = this.histories.length - 1;
           let next = this.entries.shift();
           if (next) {
             this.done.push(next);
@@ -161,7 +172,7 @@ export class RoungePanelComponent implements OnInit {
 
     setTimeout(() => {
       this.histories.push(new MatchUp(this.activeMatchUp.seatTwo, null));
-      this.activeMatchUpIndex=this.histories.length-1;
+      this.activeMatchUpIndex = this.histories.length - 1;
       this.showLHS = true;
       let next = this.entries.shift();
       if (next) {
@@ -172,28 +183,28 @@ export class RoungePanelComponent implements OnInit {
     }, 1000)
   }
 
-  revert(){
+  revert() {
 
   }
 
-  decline(match:MatchUp){
-    this.showRHS=false;
-    this.showLHS=false;
-    setTimeout(()=>{
-      if(this.histories.length<2){
+  decline(match: MatchUp) {
+    this.showRHS = false;
+    this.showLHS = false;
+    setTimeout(() => {
+      if (this.histories.length < 2) {
         return;
       }
 
-      if(match.seatTwo){
+      if (match.seatTwo) {
         this.entries.unshift(match.seatTwo);
       }
-      this.histories.splice(this.histories.findIndex((e)=>e==match),1);
-      if(this.activeMatchUpIndex>this.histories.length-1){
-        this.activeMatchUpIndex=this.histories.length;
+      this.histories.splice(this.histories.findIndex((e) => e == match), 1);
+      if (this.activeMatchUpIndex > this.histories.length - 1) {
+        this.activeMatchUpIndex = this.histories.length;
       }
-      this.showRHS=true;
-      this.showLHS=true;  
-    },1000)
+      this.showRHS = true;
+      this.showLHS = true;
+    }, 1000)
   }
 
   selectTab(tabID: number) {
@@ -202,8 +213,8 @@ export class RoungePanelComponent implements OnInit {
     }
   }
   syncList() {
-    if (this.profile) {
-      this.entryManager.getEntryDuring(this.profile.entryStart, this.profile.entryDeadline, this.profile.apiEndpoint)
+    if (this.loaderOption) {
+      this.entryManager.getEntry(this.loaderOption)
         .subscribe(list => {
           list.forEach(e => this.entries.push(e)); console.log(this.entries.length);
         });

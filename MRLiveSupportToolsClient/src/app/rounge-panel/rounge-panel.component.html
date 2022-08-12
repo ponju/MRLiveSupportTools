@@ -34,7 +34,7 @@
     <div class="ctrl-area">
       <tabset #ctrlTabs>
         <tab heading="SETUP">
-          <rounge-profile-editor [hasLoadedOnce]="hasLoadedOnce"(initialSync)="initialSetup()" [profile]="profile"></rounge-profile-editor>
+          <rounge-config-editor [profile]="profile"[loaderOption]="loaderOption" [hasLoadedOnce]="hasLoadedOnce"(initialSync)="initialSetup()" ></rounge-config-editor>
         </tab>
         <tab heading="MATCH UP">
           <match-up-profile-editor (decline)="decline($event)" [matchNum]="activeMatchUpIndex+1" [matchUp]="histories[activeMatchUpIndex]" (onLHSWins)="championContinue()" (onRHSWins)="championShift()" (nextMatch)="nextMatch()" (prevMatch)="reviewMatch()"></match-up-profile-editor>

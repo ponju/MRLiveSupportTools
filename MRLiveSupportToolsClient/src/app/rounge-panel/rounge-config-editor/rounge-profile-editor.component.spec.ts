@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoungeProfileEditorComponent } from './rounge-profile-editor.component';
+import { RoungeConfigEditorComponent } from './rounge-config-editor.component';
 
 describe('RoungeProfileEditorComponent', () => {
-  let component: RoungeProfileEditorComponent;
-  let fixture: ComponentFixture<RoungeProfileEditorComponent>;
+  let component: RoungeConfigEditorComponent;
+  let fixture: ComponentFixture<RoungeConfigEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoungeProfileEditorComponent ]
+      declarations: [ RoungeConfigEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoungeProfileEditorComponent);
+    fixture = TestBed.createComponent(RoungeConfigEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
