@@ -22,6 +22,9 @@
             [(ngModel)]="seat.playerName"></div>
         <div class="monster-info"><label class="name" for="monsterName">Monster</label><input name="monsterName"
             [(ngModel)]="seat.playableName" class="input"></div>
+        <div class="monster-info"><label class="name" for="monsterName">Note</label><input name="monsterName"
+            [(ngModel)]="seat.notation" class="input"></div>
+
       </form>
     </div>
     <div class="entry-info column">
@@ -31,8 +34,8 @@
             [(ngModel)]="seat.entryName" class="input"></div>
         <div class="farm-info"><label class="name" for="farmName">Farm</label><input class="input" name="farmName"
             [(ngModel)]="seat.playerName"></div>
-        <div class="monster-info"><label class="name" for="monsterName">Monster</label><input name="monsterName"
-            [(ngModel)]="seat.playableName" class="input"></div>
+        <div class="monster-info"><label class="name" for="monsterName">Note</label><input name="monsterName"
+            [(ngModel)]="seat.notation" class="input"></div>
       </form>
     </div>
     <div class="round-result column">
@@ -68,6 +71,7 @@
     </div>
   </div>
   <div class="ctrl-container" *ngIf="!matchUp">
-    No match defined
+    No match
+    <button (click)="prevMatch.emit()" class="btn btn-primary">Reload</button>
   </div>
 </div>

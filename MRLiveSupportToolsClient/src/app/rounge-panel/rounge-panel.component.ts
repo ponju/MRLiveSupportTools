@@ -8,11 +8,11 @@ import { SLIDE_FROM_LEFT, SLIDE_FROM_RIGHT } from '../anims/component/slide';
 import Entry from './model/entry';
 import { EntryLoaderOption } from './model/entry-loader-option';
 import { GSSEntryLoaderService } from '../services/rounge/gss-entry-loader.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import RoungeProfile from './model/rounge-profile';
 import { SLIDE_FROM_TOP } from './../anims/component/slide';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { trigger } from '@angular/animations';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'rounge-dashboard',
@@ -92,21 +92,26 @@ export class RoungePanelComponent implements OnInit {
   constructor(public entryManager: GSSEntryLoaderService, private spinner: NgxSpinnerService) {
     const today = moment();
     const morning = today.clone();
+    morning.subtract(7,'d');
     morning.hour(0);
     morning.minute(0);
     morning.second(0);
-    const night = morning.clone();
-    night.date(morning.date() + 1);
+    const night = today.clone();
+    night.hour(0);
+    night.minute(0);
+    night.second(0);
+    night.date(today.date() + 3);
     this.profile =
       new RoungeProfile(
         "てきとーラウンジ",
         undefined,
-        "©モンスターファーム2 コーエーテクモゲームス", "参加受付は配信概要のフォームより",
+        undefined,
+        "参加受付は配信概要のフォームより",
         3
       ),
       this.activeMatchUpIndex = 0;
     this.histories.push(new MatchUp(undefined, undefined));
-    this.loaderOption = new EntryLoaderOption("https://script.google.com/macros/s/AKfycbxSjkT-vAAtrGNZ29rWJgYktimY1stcd0d1FInxYH95qsZW8kbzIhjoOSTmW5yzO_wF/exec",
+    this.loaderOption = new EntryLoaderOption("https://script.google.com/macros/s/AKfycbwwQ0C9LVCKU-yVQoescEQNBNQGg5BWf7oLC-KNFAT912gPZngtiNUtWJeRx0kwSb-4/exec",
       morning,
       night
     )
@@ -229,7 +234,7 @@ export class RoungePanelComponent implements OnInit {
       }
       this.histories.splice(this.histories.findIndex((e) => e == match), 1);
       if (this.activeMatchUpIndex > this.histories.length - 1) {
-        this.activeMatchUpIndex = this.histories.length;
+        this.activeMatchUpIndex = this.histories.length-1;
       }
       this.showRHS = true;
       this.showLHS = true;

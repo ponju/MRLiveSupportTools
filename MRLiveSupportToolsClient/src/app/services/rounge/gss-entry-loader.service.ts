@@ -21,7 +21,7 @@ export class GSSEntryLoaderService {
 
     return this.http.get<EntryDTO[]>(requestURL).pipe(
       map(arr => {
-        return arr.map(dto => new Entry(new Date(dto.timeStamp), dto.entryName, dto.playerName, dto.playableName))
+        return arr.map(dto => new Entry(new Date(dto.timeStamp), dto.entryName, dto.playerName, dto.playableName,dto.notation))
       })
     );
   }
